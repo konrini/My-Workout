@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `My_Workout`.`user` (
   `weight` INT NOT NULL,
   `gender` INT NOT NULL,
   `photo` INT NOT NULL,
+  `treasure` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `id_UNIQUE` (`user_id` ASC) VISIBLE)
 ENGINE = InnoDB;
