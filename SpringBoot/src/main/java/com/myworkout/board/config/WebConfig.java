@@ -14,18 +14,12 @@ import com.myworkout.board.interceptor.JWTInterceptor;
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer{
 	
-//	@Override
-//	public void addCorsMappings(CorsRegistry registry) {
-//		registry.addMapping("/**").allowedOrigins("*")
-//		.allowedMethods("GET","POST","PUT","DELETE")
-//		.maxAge(6000);
-//	}
-//	@Override 안됨 ㅋ
-//	public void addCorsMappings(CorsRegistry registry) {
-//		registry.addMapping("/**").allowedOrigins("*")
-//		.allowedMethods("GET","POST","PUT","DELETE", "OPTIONS")
-//		.maxAge(6000);
-//	}
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**").allowedOrigins("*")
+		.allowedMethods("GET","POST","PUT","DELETE")
+		.maxAge(6000);
+	}
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
