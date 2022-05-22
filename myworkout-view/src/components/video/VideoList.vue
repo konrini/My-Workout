@@ -1,0 +1,43 @@
+<template>
+  <div>
+    <h2>
+      Video List
+    </h2>
+    <hr>
+    <div>
+      <table>
+        <tr>
+          <th>url</th>
+          <th>like_count</th>
+          <th>review_count</th>
+          <th>category</th>
+        </tr>
+        <tr v-for="video in videos" :key="video.id">
+          <td>{{video.url}}</td>
+          <td>{{video.likeCount}}</td>
+          <td>{{video.reviewCount}}</td>
+          <td>{{video.category}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</template>
+
+<script>
+import {mapState} from 'vuex'
+export default {
+  name: "VideoList",
+  computed:{
+    ...mapState([
+      "videos"
+    ])
+  },
+  created(){
+    this.$store.dispatch('getVideos')
+  }
+}
+</script>
+
+<style>
+
+</style>

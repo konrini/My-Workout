@@ -1,10 +1,47 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
+import VideoView from '@/views/VideoView.vue'
+import UserView from '@/views/UserView.vue'
+import MyPage from '@/views/MyPage.vue'
+
+import VideoList from '@/components/video/VideoList.vue'
+import VideoDetail from '@/components/video/VideoDetail.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/video',
+    component: VideoView,
+    children:[
+      {
+        path:"",
+        name:"videoList",
+        component: VideoList,
+      },
+      {
+        path:":id",
+        name:"videoDetail",
+        component: VideoDetail
+      }
+    ]
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: UserView
+  },
+  {
+    path: '/myPage',
+    name: 'myPage',
+    component: MyPage
+  },
 ]
 
 const router = new VueRouter({
