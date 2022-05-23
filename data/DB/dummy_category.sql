@@ -21,7 +21,7 @@ VALUES (0, "_yoPmviMvzc", 0, 0, "glf"),
 	   (0, "t-zQ3C_oV2Q", 0, 0, "glf"),
        (0, "vXlrBUfNEWI", 0, 0, "glf"),
        (0, "c2rsTFnb_1U", 0, 0, "glf"),
-       (0, "eDZKGr3UdaA", 0, 0, "glf"),
+       (0, "EbQrE27guqc", 0, 0, "glf"),
        (0, "EaIR8tNDDUI", 0, 0, "glf"),
        (0, "rmg1Uakv2oU", 0, 0, "glf"),
        (0, "JnZgwhyXEbs", 0, 0, "glf"),
@@ -36,7 +36,7 @@ VALUES (0, "CM9ptKlfU3g", 0, 0, "yog"),
        (0, "pc_hXPTLirA", 0, 0, "yog"),
        (0, "vIX7datlPqI", 0, 0, "yog"),
        (0, "nOGT4lXlSHw", 0, 0, "yog"),
-       (0, "qwazruVE1K0", 0, 0, "yog"),
+       (0, "TK6m2KU4Bxg", 0, 0, "yog"),
        (0, "Apj6kNWoPHI", 0, 0, "yog");
        
 -- 헬스
