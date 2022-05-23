@@ -3,7 +3,7 @@
     <h2>Video Detail</h2>
     <br><br><br>
     <hr>
-    
+     <iframe :src="'https://www.youtube.com/embed/'+ videos[id-1].url"/>
     <br><hr>
     <table>
         <tr>
@@ -29,16 +29,24 @@ import {mapState} from 'vuex'
 
 export default {
   name: "VideoDetail",
+  data() {
+    return {
+      id : "",
+    }
+  },
   computed: {
     ...mapState([
-      "reviews"
+      "reviews",
+      "videos"
     ])
   },
   created(){
     const pathName = new URL(document.location).pathname.split("/");
     const id = pathName[pathName.length-1]
+    this.id = id
     this.$store.dispatch('getReviews', id)
-  }
+    this.$store.dispatch('getVideos')
+  },
 }
 </script>
 <style>
