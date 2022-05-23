@@ -6,7 +6,7 @@
         </div>
           <div>
               <router-link to="/video">Video </router-link>
-              <router-link to="/login">Login </router-link>
+              <router-link to="user/login">Login </router-link>
               <router-link to="/myPage">MyPage</router-link>
           </div>
       </nav>

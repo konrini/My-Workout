@@ -7,7 +7,7 @@
     <b-button variant="primary" href="/myPage">MyPage</b-button>
 
     <div>
-      <b-button variant="primary" href="/login">Login</b-button>
+      <b-button variant="primary" href="user/login">Login</b-button>
     </div>
   </div>
 </template>

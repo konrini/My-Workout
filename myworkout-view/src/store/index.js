@@ -64,8 +64,38 @@ export default new Vuex.Store({
       }).catch((err)=>{
         console.log(err)
       })
-    }
+    },
+    userLogin({commit}, user) {
+      const API_URL = `${connect}/user/login`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params: user
+      }).then(res =>{
+        console.log(res)
+        commit('USER_LOGIN')
+        sessionStorage.setItem("access-token", res.data["access-token"])
+        router.push({name: 'home'})
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    userJoin({commit}, user) {
+      const API_URL = `${connect}/user/join`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params: user
+      }).then(res =>{
+        console.log(res)
+        commit('USER_JOIN')
+        router.push({name: 'home'})
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
   },
+
   modules: {
   }
 })

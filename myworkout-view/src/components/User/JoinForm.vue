@@ -1,82 +1,62 @@
 <template>
-  <div>
-      <h3>
-        Join
-      </h3>
-
   <div class="container">
-		<form @submit.prevent="submitForm">
-			<div>
-				<label for="name">Name</label>
-				<input type="text" id="name" v-model="name" />
-			</div>
-			<div>
-				<label for="nickname">Nickname</label>
-				<input type="text" id="nickname" v-model="nickname" />
-			</div>
+    <h3>Join</h3>
+    <div class="m-4">
+      <b-form-group label="아이디" label-for="id">
+        <b-form-input id="id" v-model="user.userId" trim></b-form-input>
+      </b-form-group>
+      <b-form-group label="비밀번호" label-for="pw">
+        <b-form-input id="pw" v-model="user.password" trim></b-form-input>
+      </b-form-group>
+      <b-form-group label="별명" label-for="nickname">
+        <b-form-input id="nickname" v-model="user.nickname" trim></b-form-input>
+      </b-form-group>
+      <b-form-group label="비밀번호" label-for="pw">
+        <b-form-input id="pw" v-model="user.password" trim></b-form-input>
+      </b-form-group>
+      <b-form-group label="아이디" label-for="id">
+        <b-form-input id="id" v-model="user.userId" trim></b-form-input>
+      </b-form-group>
+      <b-form-group label="비밀번호" label-for="pw">
+        <b-form-input id="pw" v-model="user.password" trim></b-form-input>
+      </b-form-group>
+      <b-form-group label="비밀번호 확인" label-for="pw_confirm">
+        <b-form-input id="pw_confirm" v-model="user.passwordConfirm" trim></b-form-input>
+      </b-form-group>
+      <b-form-group label="키" label-for="height">
+        <b-form-input id="height" v-model="user.height" trim></b-form-input>
+      </b-form-group>
+      <b-form-group label="몸무게" label-for="weight">
+        <b-form-input id="weight" v-model="user.weight" trim></b-form-input>
+      </b-form-group>
       <div>
-				<label for="id">ID</label>
-				<input type="text" id="id" v-model="id" />
-			</div>
-			<div>
-				<label for="password">비밀번호</label>
-				<input type="password" id="password" v-model="password" />
-			</div>
-			<div>
-				<label for="passwordConfirm">비밀번호 확인</label>
-				<input type="password" id="passwordConfirm" v-model="passwordConfirm" />
-			</div>
-      <div>
-				<label for="height">height</label>
-				<input type="number" id="height" v-model="height" />
-			</div>
-      <div>
-				<label for="weight">Weight</label>
-				<input type="number" id="weight" v-model="weight" />
-			</div><br>
-      <div id="select-gender">
-        Gender: {{ selectedGender }} <br>
-        <input type="radio" name="gender" id="male" value="Male" v-model="selectedGender" />
-				<label for="male">Male</label>
-				<input type="radio" name="gender" id="female" value="Female" v-model="selectedGender" />
-				<label for="female">Female</label><br>
-			</div><br>
-      <div id="selected-photo">
-        Selected photo: {{ selectedPhoto }}<br>
-				<input type="radio" name="photo" id="1" value="1" v-model="selectedPhoto"/>
-        <label for="photo1">
-          <img src="@/assets/photo/1.png" alt="Cat">
-        </label>
-        <input type="radio" name="photo" id="2" value="2" v-model="selectedPhoto"/>
-        <label for="photo2">
-          <img src="@/assets/photo/2.png" alt="Dog">
-        </label>
-        <input type="radio" name="photo" id="3" value="3" v-model="selectedPhoto"/>
-        <label for="photo3">
-          <img src="@/assets/photo/3.png" alt="Hippo">
-        </label>
-        <input type="radio" name="photo" id="4" value="4" v-model="selectedPhoto"/>
-        <label for="photo4">
-          <img src="@/assets/photo/4.png" alt="Giraffe">
-        </label>
-        <input type="radio" name="photo" id="5" value="5" v-model="selectedPhoto"/>
-        <label for="photo5">
-          <img src="@/assets/photo/5.png" alt="Tiger">
-        </label>
-        <input type="radio" name="photo" id="6" value="6" v-model="selectedPhoto"/>
-        <label for="photo6">
-          <img src="@/assets/photo/6.png" alt="Pig">
-        </label>
-			</div>
-      <div>
-				<label for="treasure">Treasure</label>
-				<input type="text" id="treasure" v-model="treasure" placeholder="비밀번호 분실 시 힌트" />
-			</div>
-			<button type="submit">회원가입</button>
-		</form>
-	</div>
+        <b-form-group label="성별">
+          <b-form-radio v-model="user.selectedGender" value="1">남자</b-form-radio>
+          <b-form-radio v-model="user.selectedGender" value="2">여자</b-form-radio>
+        </b-form-group>
+        <div class="mt-3">Selected: <strong>{{ user.selectedGender }}</strong></div>
+      </div>
 
-
+      <div>
+        <b-form-group label="캐릭터">
+          <b-form-radio-group
+            v-model="user.selectedPhoto"
+            :options="options"
+          ></b-form-radio-group>
+          <!-- <b-form-radio v-model="user.selectedPhoto" value="1"><img src="@/assets/photo/1.png" alt="Cat"></b-form-radio>
+          <b-form-radio v-model="user.selectedPhoto" value="2"><img src="@/assets/photo/2.png" alt="Dog"></b-form-radio>
+          <b-form-radio v-model="user.selectedPhoto" value="3"><img src="@/assets/photo/3.png" alt="Hippo"></b-form-radio>
+          <b-form-radio v-model="user.selectedPhoto" value="4"><img src="@/assets/photo/4.png" alt="Giraffe"></b-form-radio>
+          <b-form-radio v-model="user.selectedPhoto" value="5"><img src="@/assets/photo/5.png" alt="Tiger"></b-form-radio>
+          <b-form-radio v-model="user.selectedPhoto" value="6"><img src="@/assets/photo/6.png" alt="Pig"></b-form-radio> -->
+        </b-form-group>
+        <div class="mt-3">Selected: <strong>{{ user.selectedPhoto }}</strong></div>
+      </div>
+      <b-form-group label="나의 보물 1호는?" label-for="treasure">
+        <b-form-input id="treasure" v-model="user.treasure" trim></b-form-input>
+      </b-form-group>
+      <b-button variant="outline-success" @click="join">회원가입</b-button>
+    </div>
   </div>
 </template>
 
@@ -85,22 +65,31 @@ export default {
   name: 'JoinForm',
   data(){
     return{
-      name: '',
-      nickname: '',
-      id:'',
-      password: '',
-      passwordConfirm: '',
-      height:0,
-      weight:0,
-      selectedGender: [],
-      selectedPhoto: [],
-      photo: 0,
-      treasure: '',
+      user : {
+        name: '',
+        nickname: '',
+        userId:'',
+        password: '',
+        passwordConfirm: '',
+        height:0,
+        weight:0,
+        selectedGender: '',
+        selectedPhoto: '',
+        treasure: '',
+      },
+      options: [
+        {value: 1, text: "Cat"},
+        {value: 2, text: "Dog"},
+        {value: 3, text: "Hippo"},
+        {value: 4, text: "Giraffe"},
+        {value: 5, text: "Tiger"},
+        {value: 6, text: "Pig"},
+      ]
     };
   },
   methods:{
-    submitForm(){
-      console.log('submitted!');
+    join() {
+      this.$store.dispatch('userJoin', this.user)
     },
   }
 }
@@ -108,7 +97,7 @@ export default {
 
 <style>
 img{
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
 }
 </style>
