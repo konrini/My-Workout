@@ -13,7 +13,11 @@
           <th>category</th>
         </tr>
         <tr v-for="video in videos" :key="video.id">
-          <td>{{video.url}}</td>
+          <td>
+            <router-link :to="`/video/${video.videoId}`">
+              {{video.url}}
+            </router-link>
+          </td>
           <td>{{video.likeCount}}</td>
           <td>{{video.reviewCount}}</td>
           <td>{{video.category}}</td>

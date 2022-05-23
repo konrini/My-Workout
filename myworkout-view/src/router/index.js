@@ -25,11 +25,6 @@ const routes = [
         name:"videoList",
         component: VideoList,
       },
-      {
-        path:":id",
-        name:"videoDetail",
-        component: VideoDetail
-      }
     ]
   },
   {
@@ -42,6 +37,11 @@ const routes = [
     name: 'myPage',
     component: MyPage
   },
+  {
+    path: '/video/:videoId',
+    name: 'videoDetail',
+    component: VideoDetail
+  }
 ]
 
 const router = new VueRouter({

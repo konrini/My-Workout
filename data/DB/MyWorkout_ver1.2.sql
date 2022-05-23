@@ -11,7 +11,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema My_Workout
 -- -----------------------------------------------------
-
 DROP SCHEMA IF EXISTS `My_Workout`;
 CREATE SCHEMA IF NOT EXISTS `My_Workout` DEFAULT CHARACTER SET utf8 ;
 USE `My_Workout` ;
@@ -21,7 +20,7 @@ USE `My_Workout` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `My_Workout`.`user` (
   `user_id` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(64) NOT NULL,
   `nickname` VARCHAR(8) NOT NULL,
   `height` INT NOT NULL,
   `weight` INT NOT NULL,
