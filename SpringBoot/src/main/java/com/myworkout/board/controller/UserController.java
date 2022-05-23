@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myworkout.board.model.dto.User;
@@ -43,21 +43,21 @@ public class UserController {
 
 	// 로그인
 	@PostMapping("/login")
-	public ResponseEntity<Map<String, Object>> login(@RequestBody User user) throws Exception {
+	public ResponseEntity<Map<String, Object>> login(@RequestParam String userId, @RequestParam String password) throws Exception {
 		HttpStatus status = null;
 		HashMap<String, Object> result = new HashMap<>();
 		List<User> userList = UserService.getUserList();
 		boolean check = false;
 		for (int i = 0; i < userList.size(); i++) {
-			if (userList.get(i).getUserId().equals(user.getUserId())) {
+			if (userList.get(i).getUserId().equals(userId)) {
 				check = true;
 				break;
 			}
 		}
 		try {
 			if (check) {
-				User user_login = UserService.login(user.getUserId(), user.getPassword());
-				result.put("access-token", jwtUtil.createToken("id", user.getUserId()));
+				User user_login = UserService.login(userId, password);
+				result.put("access-token", jwtUtil.createToken("id", userId));
 				result.put("message", SUCCESS);
 				status = HttpStatus.ACCEPTED;
 			} else {
@@ -78,8 +78,11 @@ public class UserController {
 	}
 	
 	@PostMapping("/join")
-	public ResponseEntity<String> join(@RequestBody User user) throws Exception {
-		UserService.join(user);
+	public ResponseEntity<String> join(@RequestParam String userId, @RequestParam String password, @RequestParam int height,
+			@RequestParam int weight, @RequestParam String nickname, @RequestParam String treasure, 
+			@RequestParam int selectedGender, @RequestParam int selectedPhoto) throws Exception {
+		User new_user = new User(userId, password, nickname, height, weight, selectedGender, selectedPhoto, treasure);
+		UserService.join(new_user);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
 
