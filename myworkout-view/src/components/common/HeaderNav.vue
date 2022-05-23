@@ -1,12 +1,12 @@
 <template>
   <header>
       <nav class="header-nav">
-          <div>
-              <router-link to="/">Main</router-link>
-          </div>
+        <div>
+            <router-link to="/">HOME</router-link>
+        </div>
           <div>
               <router-link to="/video">Video </router-link>
-              <router-link to="/user">Login </router-link>
+              <router-link to="/login">Login </router-link>
               <router-link to="/myPage">MyPage</router-link>
           </div>
       </nav>

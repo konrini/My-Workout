@@ -2,11 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import VideoView from '@/views/VideoView.vue'
-import UserView from '@/views/UserView.vue'
+import LoginPage from '@/views/LoginPage.vue'
 import MyPage from '@/views/MyPage.vue'
 
 import VideoList from '@/components/video/VideoList.vue'
 import VideoDetail from '@/components/video/VideoDetail.vue'
+import JoinForm from '@/components/User/JoinForm.vue'
 
 Vue.use(VueRouter)
 
@@ -28,9 +29,9 @@ const routes = [
     ]
   },
   {
-    path: '/user',
-    name: 'user',
-    component: UserView
+    path: '/login',
+    name: 'login',
+    component: LoginPage,
   },
   {
     path: '/myPage',
@@ -41,7 +42,13 @@ const routes = [
     path: '/video/:videoId',
     name: 'videoDetail',
     component: VideoDetail
-  }
+  },
+  {
+    path:"/user/Join",
+    name:"joinForm",
+    component: JoinForm,
+  },
+  
 ]
 
 const router = new VueRouter({

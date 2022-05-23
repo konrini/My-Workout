@@ -1,14 +1,20 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <br><br><br><hr>
+    <br><br>
     <h3>MIMIZZANG HOME</h3>
+    <br><hr>
+    <b-button variant="primary" href="/video">Video</b-button>
+    <b-button variant="primary" href="/myPage">MyPage</b-button>
+
+    <div>
+      <b-button variant="primary" href="/login">Login</b-button>
+    </div>
   </div>
 </template>
 
 <script>
 
 export default {
-  
+
 }
 </script>

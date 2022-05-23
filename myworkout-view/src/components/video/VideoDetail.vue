@@ -3,23 +3,32 @@
     <h2>Video Detail</h2>
     <br><br><br>
     <hr>
-     <iframe :src="'https://www.youtube.com/embed/'+ videos[id-1].url"/>
-    <br><hr>
-    <table>
-        <tr>
-          <th>Id</th>
-          <th>Nickname</th>
-          <th>content</th>
-          <th>time</th>
-        </tr>
-        <tr v-for="review in reviews" :key="review.reviewId">
-          <td>{{review.userId}}</td>
-          <td>{{review.userNickname}}</td>
-          <td>{{review.content}}</td>
-          <td>{{review.time}}</td>
-        </tr>
-      </table>
-
+      <div class="d-flex flex-row justify-content-around">
+<!-- 비디오 영역 -->
+      <div>
+      <h4>{{videos[id-1].category}}</h4>
+      <iframe :src="'https://www.youtube.com/embed/'+ videos[id-1].url"/>
+      </div>
+<!-- 비디오 영역 끝 -->
+<!-- 댓글 영역 -->
+      <div>
+        <table>
+          <tr>
+            <th>Id</th>
+            <th>Nickname</th>
+            <th>content</th>
+            <th>time</th>
+          </tr>
+          <tr v-for="review in reviews" :key="review.reviewId">
+            <td>{{review.userId}}</td>
+            <td>{{review.userNickname}}</td>
+            <td>{{review.content}}</td>
+            <td>{{review.time}}</td>
+          </tr>
+        </table>
+      </div>
+<!-- 댓글 영역 끝 -->
+      </div>
   </div>
 </template>
 
