@@ -37,6 +37,11 @@ public class VideoController {
 		return new ResponseEntity<List<VideoReview>>(VideoService.getDetail(videoId), HttpStatus.OK);
 	}
 
+	@GetMapping("/{category}")
+	public ResponseEntity<List<Video>> videocategory(@PathVariable String category) {
+		return new ResponseEntity<List<Video>>(VideoService.getVideobyCategory(category), HttpStatus.OK);
+	}
+
 	@PostMapping("/")
 	public ResponseEntity<String> write(VideoReview videoreview){
 		System.out.println(videoreview.getContent());
