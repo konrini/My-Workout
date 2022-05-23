@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer{
 		.allowedMethods("GET","POST","PUT","DELETE")
 		.maxAge(6000);
 	}
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/swagger-ui/**")
@@ -34,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer{
 //	public void addInterceptors(InterceptorRegistry registry) {
 //		registry.addInterceptor(jwtInterceptor)
 //		.addPathPatterns("/**")
-//		.excludePathPatterns("/api/login");
+//		.excludePathPatterns("user/login");
 //	}
 	
 }

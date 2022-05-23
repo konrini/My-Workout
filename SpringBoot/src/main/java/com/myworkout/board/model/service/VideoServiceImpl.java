@@ -24,6 +24,11 @@ public class VideoServiceImpl implements VideoService{
 	public List<VideoReview> getDetail(int videoId) {
 		return videodao.detailVideo(videoId);
 	}
+	
+	@Override
+	public Video getVideo(int videoId) {
+		return videodao.selectOneVideo(videoId);
+	}
 
 	@Override
 	public VideoReview getReview(int reviewId) {

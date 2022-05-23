@@ -9,6 +9,9 @@ public interface VideoService {
 	// 영상 목록 조회
 	List<Video> getVideoList();
 	
+	// 영상 하나 조회
+	Video getVideo(int videoId);
+	
 	// 특정 영상과 댓글 조회
 	List<VideoReview> getDetail(int videoId);
 

@@ -27,6 +27,12 @@
 		FROM video
 	</select>
 	
+	<select id="selecOneVideo" resultMap="videoMap" parameterType="int">
+		SELECT *
+		FROM video
+		WHERE video_id = #{video_id}
+	</select>
+	
 	<select id="detailVideo" resultMap="reviewMap" parameterType="int">
 		SELECT review_id, content, user_photo, user_nickname, changed, date_format(time, '%Y-%m-%d %H:%i:%s') as time, user_id, video_id
 		FROM review

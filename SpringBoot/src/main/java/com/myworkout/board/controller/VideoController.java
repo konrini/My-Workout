@@ -38,14 +38,14 @@ public class VideoController {
 	}
 
 	@PostMapping("/")
-	public ResponseEntity<String> writereview(VideoReview videoreview){
+	public ResponseEntity<String> write(VideoReview videoreview){
 		System.out.println(videoreview.getContent());
 		VideoService.writeReview(videoreview);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/")
-	public ResponseEntity<String> updatereview(VideoReview videoreview){
+	public ResponseEntity<String> update(VideoReview videoreview){
 		VideoService.modifyReview(videoreview);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
