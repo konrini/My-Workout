@@ -27,6 +27,12 @@
 		FROM video
 	</select>
 	
+	<select id="selectVidebyCategory" resultMap="videoMap" parameterType="String">
+		SELECT *
+		FROM video
+		WHERE category = #{category}
+	</select>
+	
 	<select id="selecOneVideo" resultMap="videoMap" parameterType="int">
 		SELECT *
 		FROM video

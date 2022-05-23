@@ -27,14 +27,14 @@ public class WebConfig implements WebMvcConfigurer{
 				.addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/");
 	}
 	
-//	@Autowired
-//	private JWTInterceptor jwtInterceptor;
-//	
-//	@Override
-//	public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(jwtInterceptor)
-//		.addPathPatterns("/**")
-//		.excludePathPatterns("user/login");
-//	}
+	@Autowired
+	private JWTInterceptor jwtInterceptor;
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(jwtInterceptor)
+		.addPathPatterns("/daily");
+//		.excludePathPatterns("/user/**");
+	}
 	
 }

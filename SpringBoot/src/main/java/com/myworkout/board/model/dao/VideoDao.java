@@ -12,6 +12,9 @@ public interface VideoDao {
 	// 영상 하나 조회하기
 	Video selectOneVideo(int videoId);
 	
+	// 영상 카테고리로 조회하기
+	List<Video> selectVidebyCategory(String category);
+	
 	// 영상 디테일 조회하기 및 댓글 불러오기
 	List<VideoReview> detailVideo(int videoId);
 	

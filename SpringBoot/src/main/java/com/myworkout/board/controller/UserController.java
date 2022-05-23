@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myworkout.board.model.dto.User;
-import com.myworkout.board.model.dto.VideoReview;
 import com.myworkout.board.model.service.UserService;
-import com.myworkout.board.model.service.VideoService;
 import com.myworkout.board.util.JWTUtil;
 
 @RestController
@@ -45,21 +43,20 @@ public class UserController {
 
 	// 로그인
 	@PostMapping("/login")
-	public ResponseEntity<Map<String, Object>> login(@RequestBody User user, HttpSession session) {
+	public ResponseEntity<Map<String, Object>> login(@RequestBody User user) throws Exception {
 		HttpStatus status = null;
 		HashMap<String, Object> result = new HashMap<>();
-		try {
-			List<User> userList = UserService.getUserList();
-			boolean check = false;
-			for (int i = 0; i < userList.size(); i++) {
-				if (userList.get(i).getUserId().equals(user.getUserId())) {
-					check = true;
-					break;
-				}
+		List<User> userList = UserService.getUserList();
+		boolean check = false;
+		for (int i = 0; i < userList.size(); i++) {
+			if (userList.get(i).getUserId().equals(user.getUserId())) {
+				check = true;
+				break;
 			}
+		}
+		try {
 			if (check) {
 				User user_login = UserService.login(user.getUserId(), user.getPassword());
-				session.setAttribute("userId", user_login.getUserId());
 				result.put("access-token", jwtUtil.createToken("id", user.getUserId()));
 				result.put("message", SUCCESS);
 				status = HttpStatus.ACCEPTED;

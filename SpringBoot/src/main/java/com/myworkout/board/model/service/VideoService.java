@@ -12,6 +12,9 @@ public interface VideoService {
 	// 영상 하나 조회
 	Video getVideo(int videoId);
 	
+	// 영상 카테고리로 조회
+	List<Video> getVideobyCategory(String category);
+	
 	// 특정 영상과 댓글 조회
 	List<VideoReview> getDetail(int videoId);
 
