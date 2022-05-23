@@ -4,7 +4,6 @@ import HomeView from '@/views/HomeView.vue'
 import VideoView from '@/views/VideoView.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import MyPage from '@/views/MyPage.vue'
-
 import VideoList from '@/components/video/VideoList.vue'
 import VideoDetail from '@/components/video/VideoDetail.vue'
 import JoinForm from '@/components/User/JoinForm.vue'

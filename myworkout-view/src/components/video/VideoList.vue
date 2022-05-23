@@ -1,8 +1,9 @@
 <template>
   <div>
-    <h2>
+    <br><br>
+    <h4>
       Video List
-    </h2>
+    </h4>
     <hr>
     <div>
       <table>
@@ -24,7 +25,7 @@
         </tr>
       </table>
     </div>
-    <br><br><br>
+<br><br><br>
   </div>
 </template>
 
@@ -34,12 +35,13 @@ export default {
   name: "VideoList",
   computed:{
     ...mapState([
-      "videos"
+      "videos",
+      "category",
     ])
   },
   created(){
     this.$store.dispatch('getVideos')
-  }
+  },
 }
 </script>
 
