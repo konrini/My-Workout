@@ -57,6 +57,7 @@
       </b-form-group>
       <b-button variant="outline-success" @click="join">회원가입</b-button>
     </div>
+    <br><br><br>
   </div>
 </template>
 

@@ -1,8 +1,7 @@
-//import axios from 'axios'
 import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
-//import router from '@/router'
+import router from '@/router'
 
 Vue.use(Vuex)
 
