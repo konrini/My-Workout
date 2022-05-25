@@ -13,9 +13,20 @@
         <img src="../assets/homeimg/video.png">
       </router-link>
       
-      <router-link class="animate__animated animate__fadeInRightBig mx-3" to="/dailyView">
+      <router-link v-if="isLogin == true" class="animate__animated animate__fadeInRightBig mx-3" to="/dailyView">
         <img src="../assets/homeimg/calendar.png">
       </router-link>
+      <div v-else>
+        <img class="animate__animated animate__fadeInRightBig mx-3" @click="showAlert" src="../assets/homeimg/calendar.png">
+        <b-alert
+          :show="dismissCountDown"
+          dismissible
+          variant="info"
+          @dismissed="dismissCountDown=0"
+          @dismiss-count-down="countDownChanged">
+          로그인이 필요합니다.
+        </b-alert>
+      </div>
     </b-row><br><br>
     <b-row class="justify-content-md-center">
       <div v-if="this.isLogin == true">
@@ -42,11 +53,19 @@ import {mapState} from 'vuex'
 export default {
   data(){
     return {
+        dismissSecs: 5,
+        dismissCountDown: 0
     }
   },
   methods: {
     logout() {
       this.$store.dispatch("userLogout")
+      },
+      countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+      showAlert() {
+        this.dismissCountDown = this.dismissSecs
       }
   },
   computed: {

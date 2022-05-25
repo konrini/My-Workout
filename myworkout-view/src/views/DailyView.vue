@@ -14,17 +14,27 @@
       ></b-calendar>
 
       <b-row class="justify-content-md-end">
-        <b-button class="mr-4" href="/dailyView/regist">오늘의 운동 완료</b-button>
+        <b-button class="mr-4" @click="check">오늘의 운동 완료</b-button>
       </b-row>
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
   data(){
     return{
-      value:''
+      value: "",
+      info: {
+        userId: "",
+      }
     }
+  },
+  computed: {
+      ...mapState([
+      "user",
+      ])
   },
   methods:{
     dateClass(ymd, date){
@@ -34,6 +44,10 @@ export default {
       }else if(day==11){
         return 'table-danger'
       }
+    },
+    check() {
+      this.info.userId = this.user.userId
+      this.$store.dispatch('getDiary', this.info)
     }
   }
 }

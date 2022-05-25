@@ -11,7 +11,7 @@ const connect = `http://localhost:9999`
 export default new Vuex.Store({
   plugins: [
     creatPersistedState({
-      paths: ['isLogin', 'resetId', 'user'],
+      paths: ['isLogin', 'resetId', 'user', 'diary'],
     })
   ],
   state: {
@@ -22,6 +22,7 @@ export default new Vuex.Store({
     isLogin: false,
     user: '',
     resetId: '',
+    diary: ''
   },
   getters: {
   },
@@ -45,10 +46,14 @@ export default new Vuex.Store({
     USER_LOGOUT(state){
       state.isLogin = false
       state.user = ''
+      state.diary = ''
     },
     PW_RESET(state, payload){
       state.resetId = payload
     },
+    GET_DIARY(state, payload){
+      state.diary = payload
+    }
   },
   actions: {
     // 전체 영상 가져오기
@@ -122,23 +127,6 @@ export default new Vuex.Store({
       }).catch((err)=>{
         console.log(err)
       })
-    },
-    dailyRegist({commit}, daily){
-
-      console.log(daily)
-      router.push({name: 'dailyView'})
-      commit
-      // axios({
-      //   method:'GET',
-      //   params: daily
-      // }).then(res=>{
-      //   console.log(res)
-      //   commit('DAILY_REGIST')
-      //   router.push({name: 'dailyView'})
-      // }).catch((err)=>{
-      //   console.log(err)
-      // })
-      
     },
     userLogout({commit}) {
       const API_URL = `${connect}/user/logout`
@@ -226,6 +214,36 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    writeDiary({commit}, diary) {
+      const API_URL = `${connect}/dailyView/regist`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params: diary
+      }).then(res =>{
+        console.log(res)
+        commit()
+        router.push({name: 'dailyView'})
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    getDiary({commit}, info) {
+      const API_URL = `${connect}/dailyView/regist`
+      axios({
+        url: API_URL,
+        method: 'GET',
+        params: info
+      }).then(res =>{
+        if (res.data.daily != null) {
+          commit('GET_DIARY', res.data.daily)
+        }
+        router.push({name: 'RegistWork'})
+        commit()
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }
   },
 
   modules: {

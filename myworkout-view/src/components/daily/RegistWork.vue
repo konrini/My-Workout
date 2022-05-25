@@ -9,21 +9,21 @@
         <div class="container">
           <div class="m-4">
             <b-form-group label="키" label-for="height">
-              <b-form-input type="number" id="height" v-model="daily.height" trim></b-form-input>
+              <b-form-input type="number" id="height" v-model="daily.changedHeight" trim></b-form-input>
             </b-form-group>
             <b-form-group label="몸무게" label-for="weight">
-              <b-form-input type="number" id="weight" v-model="daily.weight" trim></b-form-input>
+              <b-form-input type="number" id="weight" v-model="daily.changedWeight" trim></b-form-input>
             </b-form-group>
             <b-form-group label="운동 종류">
               <b-form-radio-group
-                v-model="daily.selectedWork"
+                v-model="daily.category"
                 :options="options"
               ></b-form-radio-group>
             </b-form-group>
             <b-form-group label="운동일지" label-for="content">
               <b-form-textarea
                 id="textarea"
-                v-model="daily.content"
+                v-model="daily.diary"
                 placeholder="오늘의 운동 일지"
                 rows="10"
               ></b-form-textarea>
@@ -38,29 +38,48 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
   name: 'RegistWork',
   data(){
     return{
-      daily:{
-        height:0,
-        weight:0,
-        selectedWork:0,
-        content:'',
+      daily: {
+        userId: "",
+        changedHeight: 0,
+        changedWeight: 0,
+        category: 0,
+        diary:'',
       },
       options:[
-        {value: 1, text: "수영"},
-        {value: 2, text: "골프"},
-        {value: 3, text: "요가"},
-        {value: 4, text: "피트니스"},
-        {value: 5, text: "배드민턴"},
-        {value: 6, text: "야구"},
+        {value: "swm", text: "수영"},
+        {value: "glf", text: "골프"},
+        {value: "yog", text: "요가"},
+        {value: "ftn", text: "피트니스"},
+        {value: "bmt", text: "배드민턴"},
+        {value: "bsb", text: "야구"},
+        {value: "etc", text: "기타"},
       ]
     }
   },
   methods:{
     regist(){
-      this.$store.dispatch('dailyRegist', this.daily)
+      this.daily.userId = this.user.userId
+      this.$store.dispatch('writeDiary', this.daily)
+    }
+  },
+  computed: {
+      ...mapState([
+      "user",
+      "diary"
+      ])
+  },
+  created() {
+    this.daily.changedHeight = this.user.height
+    this.daily.changedWeight = this.user.weight
+    if (this.diary != "") {
+      this.daily.category = this.diary.category
+      this.daily.diary = this.diary.diary
     }
   }
 }
