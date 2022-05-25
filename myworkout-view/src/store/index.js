@@ -22,6 +22,7 @@ export default new Vuex.Store({
     isLogin: false,
     user: '',
     resetId: '',
+    searchVideos:[],
     diary: ''
   },
   getters: {
@@ -50,6 +51,9 @@ export default new Vuex.Store({
     },
     PW_RESET(state, payload){
       state.resetId = payload
+    },
+    SEARCH_YOUTUBE(state, videos){
+      state.searchVideos = videos
     },
     GET_DIARY(state, payload){
       state.diary = payload
@@ -214,6 +218,29 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    searchYoutube({commit}, value){
+      const YOUTUBE_KEY = process.env.VUE_APP_YOUTUBE_API_KEY;
+      const API_URL = `https://www.googleapis.com/youtube/v3/search`
+
+      const params = {
+        key: YOUTUBE_KEY,
+        part: 'snippet',
+        type: 'video',
+        q: value,
+        maxResults: 1
+      }
+      axios({
+        url: API_URL,
+        method: 'GET',
+        params,
+      })
+      .then((res)=>{
+        commit("SEARCH_YOUTUBE", res.data.items)
+        console.log(res.data.items)
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
     writeDiary({commit}, diary) {
       const API_URL = `${connect}/dailyView/regist`
       axios({
@@ -244,6 +271,7 @@ export default new Vuex.Store({
         console.log(err)
       })
     }
+
   },
 
   modules: {
