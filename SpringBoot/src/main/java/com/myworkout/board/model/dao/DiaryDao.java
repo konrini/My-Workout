@@ -9,7 +9,7 @@ public interface DiaryDao {
 	List<Diary> selectAllDiaries(String userId);
 	
 	// 일기 디테일 조회하기
-	Diary detailDiary(String date);
+	Diary detailDiary(String userId, String date);
 
 	// 일기 등록하기
 	void InsertDiary(Diary diary);

@@ -1,12 +1,10 @@
 package com.myworkout.board.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 //@Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class User {
 	private String userId;
 	private String password;
@@ -78,6 +76,18 @@ public class User {
 	}
 
 	public void setTreasure(String treasure) {
+		this.treasure = treasure;
+	}
+
+	public User(String userId, String password, String nickname, int height, int weight, int gender, int photo,
+			String treasure) {
+		this.userId = userId;
+		this.password = password;
+		this.nickname = nickname;
+		this.height = height;
+		this.weight = weight;
+		this.gender = gender;
+		this.photo = photo;
 		this.treasure = treasure;
 	}
 

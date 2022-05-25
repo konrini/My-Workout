@@ -9,7 +9,7 @@ public interface DiaryService {
 	List<Diary> getDiaryList(String userId);
 	
 	// 일기 디테일 조회
-	Diary getDiary(String date);
+	Diary getDiary(String userId, String date);
 
 	// 일기 등록
 	void writeDiary(Diary diary);

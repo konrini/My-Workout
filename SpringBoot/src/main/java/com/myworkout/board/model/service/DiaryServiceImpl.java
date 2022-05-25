@@ -20,8 +20,8 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public Diary getDiary(String date) {
-		return diarydao.detailDiary(date);
+	public Diary getDiary(String userId, String date) {
+		return diarydao.detailDiary(userId, date);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class DiaryServiceImpl implements DiaryService {
 
 	@Override
 	public boolean modifyDiary(Diary diary) {
-		Diary originDiary = diarydao.detailDiary(diary.getDate());
+		Diary originDiary = diarydao.detailDiary(diary.getUserId(), diary.getDate());
 		originDiary.setChangedWeight(diary.getChangedWeight());
 		originDiary.setChangedHeight(diary.getChangedHeight());
 		originDiary.setCategory(diary.getCategory());

@@ -22,7 +22,7 @@
 	<select id="detailDiary" resultMap="diaryMap" parameterType="String">
 		SELECT *
 		FROM daily_workout
-		WHERE date = #{date}
+		WHERE date = CURRENT_DATE() and user_id = #{userId}
 	</select>
 	
 	<insert id="InsertDiary" parameterType="Diary">
@@ -36,8 +36,8 @@
 		changed_height = #{changedHeight},
 		changed_weight = #{changedWeight},
 		category = #{category},
-		diary = #{diary},
-		WHERE date = #{date}
+		diary = #{diary}
+		WHERE date = CURRENT_DATE() and user_id = #{userId}
 	</update>
 	
 	<delete id="DeleteDiary" parameterType="String">

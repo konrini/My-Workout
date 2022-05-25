@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 //@Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Diary {
 	private int id;
 	private String category;
@@ -14,7 +14,7 @@ public class Diary {
 	private int changedWeight;
 	private int changedHeight;
 	private String userId;
-
+	
 	public int getId() {
 		return id;
 	}
@@ -68,6 +68,17 @@ public class Diary {
 	}
 
 	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public Diary(int id, String category, String diary, String date, int changedWeight, int changedHeight,
+			String userId) {
+		this.id = id;
+		this.category = category;
+		this.diary = diary;
+		this.date = date;
+		this.changedWeight = changedWeight;
+		this.changedHeight = changedHeight;
 		this.userId = userId;
 	}
 
