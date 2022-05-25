@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myworkout.board.model.dto.Video;
@@ -43,14 +44,17 @@ public class VideoController {
 	}
 
 	@PostMapping("/")
-	public ResponseEntity<String> write(VideoReview videoreview){
-		System.out.println(videoreview.getContent());
+	public ResponseEntity<String> write(@RequestParam String content, @RequestParam int userPhoto, 
+			@RequestParam String userId, @RequestParam String userNickname, @RequestParam int videoId){
+		VideoReview videoreview = new VideoReview(0, content, "", 0, userPhoto, userId, userNickname, videoId);
 		VideoService.writeReview(videoreview);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/")
-	public ResponseEntity<String> update(VideoReview videoreview){
+	public ResponseEntity<String> update(@RequestParam int reviewId, @RequestParam String content){
+		VideoReview videoreview = VideoService.getReview(reviewId);
+		videoreview.setContent(content + " (수정됨)");
 		VideoService.modifyReview(videoreview);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}

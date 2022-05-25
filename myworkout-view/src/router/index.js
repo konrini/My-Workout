@@ -7,6 +7,8 @@ import MyPage from '@/views/MyPage.vue'
 import VideoList from '@/components/video/VideoList.vue'
 import VideoDetail from '@/components/video/VideoDetail.vue'
 import JoinForm from '@/components/User/JoinForm.vue'
+import PwFind from '@/components/User/PwFind.vue'
+import PwReset from '@/components/User/PwReset.vue'
 
 Vue.use(VueRouter)
 
@@ -14,7 +16,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: HomeView
   },
   {
     path: '/video',
@@ -47,7 +49,18 @@ const routes = [
     name:"joinForm",
     component: JoinForm,
   },
+  {
+    path:"/user/pw",
+    name:"pwFind",
+    component: PwFind,
+  },
+  {
+    path:"/user/pw",
+    name:"pwReset",
+    component: PwReset,
+  },
   
+
 ]
 
 const router = new VueRouter({

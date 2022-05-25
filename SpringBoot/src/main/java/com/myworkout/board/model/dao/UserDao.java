@@ -19,6 +19,4 @@ public interface UserDao{
 	
 	// 회원 검색
 	User selectOneUser(String userId) throws Exception;
-	
-	
 }

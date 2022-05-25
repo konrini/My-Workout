@@ -2,16 +2,25 @@ import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '@/router'
+import creatPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex)
 
 const connect = `http://localhost:9999`
 
 export default new Vuex.Store({
+  plugins: [
+    creatPersistedState({
+      paths: ['isLogin', 'resetId', 'user'],
+    })
+  ],
   state: {
     // vuex data storage
     videos:[],
     reviews:[],
+    isLogin: false,
+    user: '',
+    resetId: '',
   },
   getters: {
   },
@@ -24,7 +33,18 @@ export default new Vuex.Store({
     }, 
     GET_FILTER(state, payload){
       state.videos = payload
-    }
+    }, 
+    USER_LOGIN(state, payload){
+      state.isLogin = true
+      state.user = payload
+    },
+    USER_LOGOUT(state){
+      state.isLogin = false
+      state.user = ''
+    },
+    PW_RESET(state, payload){
+      state.resetId = payload
+    },
   },
   actions: {
     // 전체 영상 가져오기
@@ -72,10 +92,16 @@ export default new Vuex.Store({
         params: user
       }).then(res =>{
         console.log(res)
-        commit('USER_LOGIN')
-        sessionStorage.setItem("access-token", res.data["access-token"])
-        router.push({name: 'home'})
+        if (res.data["access-token"]) {
+          sessionStorage.setItem("access-token", res.data["access-token"])
+          commit('USER_LOGIN', res.data["user"])
+          router.push({name: 'home'})
+        }
+        else {
+          alert("아이디나 비밀번호가 일치하지 않습니다.")
+        }
       }).catch((err)=>{
+        alert("아이디나 비밀번호가 일치하지 않습니다.")
         console.log(err)
       })
     },
@@ -87,8 +113,93 @@ export default new Vuex.Store({
         params: user
       }).then(res =>{
         console.log(res)
-        commit('USER_JOIN')
+        commit
         router.push({name: 'home'})
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    userLogout({commit}) {
+      const API_URL = `${connect}/user/logout`
+      axios({
+        url: API_URL,
+        method: 'GET'
+      }).then(res =>{
+        console.log(res)
+        localStorage.clear()
+        sessionStorage.clear()
+        commit('USER_LOGOUT')
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    pwFind({commit}, info) {
+      const API_URL = `${connect}/user/pw`
+      axios({
+        url: API_URL,
+        method: 'GET',
+        params: info
+      }).then(res =>{
+        if (res["data"] === "success") {
+          commit('PW_RESET', info.userId)
+          router.push({name: 'pwReset'})
+        }
+        else {
+          alert("아이디와 보물 1호가 일치하지 않습니다.")
+        }
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    pwReset({commit}, user) {
+      const API_URL = `${connect}/user/pw`
+      axios({
+        url: API_URL,
+        method: 'PUT',
+        params: user
+      }).then(res =>{
+        console.log(res)
+        commit
+        router.push({name: 'home'})
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    writeReview({commit}, new_review) {
+      const API_URL = `${connect}/video/`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params: new_review
+      }).then(res =>{
+        console.log(res)
+        commit('WRITE_REVIEW')
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    deleteReview({commit}, reviewId) {
+      const API_URL = `${connect}/video/` + reviewId
+      axios({
+        url: API_URL,
+        method: 'DELETE',
+      }).then(res =>{
+        console.log(res)
+        commit('DELETE_REVIEW')
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    modifyReview({commit}, new_review) {
+      const API_URL = `${connect}/video/`
+      axios({
+        url: API_URL,
+        method: 'PUT',
+        params: new_review
+      }).then(res =>{
+        console.log(new_review)
+        console.log(res)
+        commit()
       }).catch((err)=>{
         console.log(err)
       })

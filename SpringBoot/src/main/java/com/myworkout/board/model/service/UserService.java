@@ -22,4 +22,8 @@ public interface UserService {
 	
 	// 회원 조회
 	User getUser(String userId) throws Exception;
+	
+	// 비밀번호 찾기 (아이디와 보물 1호 체크)
+	boolean findPW(String userId, String treasure) throws Exception;
+	
 }

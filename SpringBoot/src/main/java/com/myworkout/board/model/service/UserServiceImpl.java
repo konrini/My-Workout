@@ -59,4 +59,13 @@ public class UserServiceImpl implements UserService {
 	public User getUser(String userId) throws Exception {
 		return userDao.selectOneUser(userId);
 	}
+
+	@Override
+	public boolean findPW(String userId, String treasure) throws Exception {
+		User user = userDao.selectOneUser(userId);
+		if (user.getTreasure().equals(treasure)) {
+			return true;
+		}
+		return false;
+	}
 }

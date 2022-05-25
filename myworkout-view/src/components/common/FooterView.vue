@@ -1,6 +1,6 @@
 <template>
   <div>
-    <footer v-if="showFooter">
+    <footer>
       copyright
     </footer>
   </div>
@@ -8,9 +8,7 @@
 
 <script>
 export default {
-  data(){
-        this.$route.path === '/' ? this.showFooter = false : this.showFooter = true
-    }
+
 }
 </script>
 

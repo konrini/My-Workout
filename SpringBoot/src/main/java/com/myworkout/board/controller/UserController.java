@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myworkout.board.model.dto.User;
 import com.myworkout.board.model.service.UserService;
 import com.myworkout.board.util.JWTUtil;
+import com.myworkout.board.util.SHA256;
 
 @RestController
 @RequestMapping("/user")
@@ -46,18 +47,12 @@ public class UserController {
 	public ResponseEntity<Map<String, Object>> login(@RequestParam String userId, @RequestParam String password) throws Exception {
 		HttpStatus status = null;
 		HashMap<String, Object> result = new HashMap<>();
-		List<User> userList = UserService.getUserList();
-		boolean check = false;
-		for (int i = 0; i < userList.size(); i++) {
-			if (userList.get(i).getUserId().equals(userId)) {
-				check = true;
-				break;
-			}
-		}
+		User user = UserService.getUser(userId);
 		try {
-			if (check) {
+			if (!(user == null)) {
 				User user_login = UserService.login(userId, password);
 				result.put("access-token", jwtUtil.createToken("id", userId));
+				result.put("user", user_login);
 				result.put("message", SUCCESS);
 				status = HttpStatus.ACCEPTED;
 			} else {
@@ -71,10 +66,25 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(result, status);
 	}
 
-	@GetMapping("logout")
-	public ResponseEntity<String> logout(HttpSession session) throws Exception {
-		session.invalidate();
+	@GetMapping("/logout")
+	public ResponseEntity<String> logout() throws Exception {
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+	}
+	
+	@GetMapping("/pw")
+	public ResponseEntity<String> pwfind(@RequestParam String userId, @RequestParam String treasure) throws Exception {
+		if (UserService.findPW(userId, treasure)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);			
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.OK);	
+	}
+
+	@PutMapping("/pw")
+	public ResponseEntity<String> pwreset(@RequestParam String userId, @RequestParam String password) throws Exception {
+		User user = UserService.getUser(userId);
+		user.setPassword(new SHA256().getHash(password));
+		UserService.modifyUser(user);
+		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);	
 	}
 	
 	@PostMapping("/join")
