@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="width: 600px;">
+  <div class="container" style="width: 600px;"><br><br>
     <h3>비밀번호 재설정하기
     </h3>
     <div class="m-4">

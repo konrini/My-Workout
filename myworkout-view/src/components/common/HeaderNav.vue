@@ -1,40 +1,39 @@
 <template>
-  <header v-if="showHeader">
-      <nav class="header-nav">
-        <div>
-            <router-link to="/">HOME</router-link>
-        </div>    
-        <div v-if="this.isLogin == true">
-            <router-link to="/video">Video </router-link>
-            <router-link to="/dailyView">Daily Calendar</router-link>
-        </div>
-        <div v-else>
-            <router-link to="/video">Video </router-link>
-            <router-link to="/user/login">Login </router-link>
-        </div>
-      </nav>
-  </header>
+    <nav class="header-nav">
+    <div>
+        <router-link to="/"><b-icon class="mx-1 ml-2" icon="house-fill" aria-hidden="true"/></router-link>
+        <router-link to="/video"><b-icon class="mr-2" icon="camera-video-fill" aria-hidden="true"/></router-link>
+        <router-link v-if="this.isLogin == true" to="/dailyView"><b-icon icon="calendar2-check" aria-hidden="true"/></router-link>
+        <router-link v-else to="/user/login"><b-icon icon="key-fill" aria-hidden="true"/></router-link>
+    </div>
+    </nav>
 </template>
 
 <script>
 
+import {mapState} from 'vuex'
+
 export default {
-    data(){
-        this.$route.path === '/' ? this.showHeader = false : this.showHeader = true
-    }
+  computed: {
+      ...mapState([
+      "isLogin",
+      ])
+  },
 }
+
 </script>
 
 <style>
     header{
         height:50px;
-        background-color: black;
+        background-color: white;
     }
     .header{
         display:flex;
     }
     nav a{
-        color: white;
+        color: black;
+        font-size: 40px;
     }
     nav a.router-link-exact-active{
         color: #EE7785;

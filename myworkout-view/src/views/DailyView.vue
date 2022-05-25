@@ -14,7 +14,7 @@
       ></b-calendar>
 
       <b-row class="justify-content-md-end">
-        <b-button href="/dailyView/regist">오늘의 운동 완료</b-button>
+        <b-button class="mr-4" href="/dailyView/regist">오늘의 운동 완료</b-button>
       </b-row>
   </div>
 </template>
