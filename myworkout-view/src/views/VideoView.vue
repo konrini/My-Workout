@@ -3,26 +3,26 @@
     <br>
     <h5>Video Page
 
-      <button @click="getAll">All</button>
+      <b-button @click="getAll">All</b-button>
 
-      <button @click="filter('swm')">
+      <b-button @click="filter('swm')">
         수영
-      </button>
-      <button @click="filter('glf')">
+      </b-button>
+      <b-button @click="filter('glf')">
         골프
-      </button>
-      <button @click="filter('yog')">
+      </b-button>
+      <b-button @click="filter('yog')">
         요가
-      </button>
-      <button @click="filter('ftn')">
+      </b-button>
+      <b-button @click="filter('ftn')">
         피트니스
-      </button>
-      <button @click="filter('bmt')">
+      </b-button>
+      <b-button @click="filter('bmt')">
         배드민턴
-      </button>
-      <button @click="filter('bsb')">
+      </b-button>
+      <b-button @click="filter('bsb')">
         야구
-      </button>
+      </b-button>
     </h5>
     <br>
   <router-view/>

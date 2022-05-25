@@ -81,9 +81,10 @@ export default {
   },
   methods: {
     create() {
+      console.log(this.new_review)
       this.$store.dispatch('writeReview', this.new_review)
       this.new_review.content = ""
-      this.$router.go();
+     // this.$router.go();
     },
     doDel(reviewId) {
       this.$store.dispatch('deleteReview', reviewId)

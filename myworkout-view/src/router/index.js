@@ -3,10 +3,11 @@ import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import VideoView from '@/views/VideoView.vue'
 import LoginPage from '@/views/LoginPage.vue'
-import MyPage from '@/views/MyPage.vue'
+import DailyView from '@/views/DailyView.vue'
 import VideoList from '@/components/video/VideoList.vue'
 import VideoDetail from '@/components/video/VideoDetail.vue'
 import JoinForm from '@/components/User/JoinForm.vue'
+import RegistWork from '@/components/daily/RegistWork.vue'
 import PwFind from '@/components/User/PwFind.vue'
 import PwReset from '@/components/User/PwReset.vue'
 
@@ -16,7 +17,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
   },
   {
     path: '/video',
@@ -35,19 +36,24 @@ const routes = [
     component: LoginPage,
   },
   {
-    path: '/myPage',
-    name: 'myPage',
-    component: MyPage
+    path: '/dailyView',
+    name: 'dailyView',
+    component: DailyView,
   },
   {
     path: '/video/:videoId',
     name: 'videoDetail',
-    component: VideoDetail
+    component: VideoDetail,
   },
   {
     path:"/user/Join",
     name:"joinForm",
     component: JoinForm,
+  },
+  {
+    path:"/dailyView/regist",
+    name:"RegistWork",
+    component: RegistWork,
   },
   {
     path:"/user/pw",
@@ -60,7 +66,6 @@ const routes = [
     component: PwReset,
   },
   
-
 ]
 
 const router = new VueRouter({

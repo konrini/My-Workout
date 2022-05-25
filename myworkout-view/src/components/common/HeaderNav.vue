@@ -1,12 +1,12 @@
 <template>
-  <header>
+  <header v-if="showHeader">
       <nav class="header-nav">
         <div>
             <router-link to="/">HOME</router-link>
         </div>    
         <div v-if="this.isLogin == true">
             <router-link to="/video">Video </router-link>
-            <router-link to="/myPage">MyPage</router-link>
+            <router-link to="/dailyView">Daily Calendar</router-link>
         </div>
         <div v-else>
             <router-link to="/video">Video </router-link>
@@ -17,18 +17,11 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
 
 export default {
-    data() {
-        return {
-        }
-    },
-    computed: {
-        ...mapState([
-        "isLogin",
-        ])
-    },
+    data(){
+        this.$route.path === '/' ? this.showHeader = false : this.showHeader = true
+    }
 }
 </script>
 

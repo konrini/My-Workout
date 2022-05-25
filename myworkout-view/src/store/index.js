@@ -18,6 +18,7 @@ export default new Vuex.Store({
     // vuex data storage
     videos:[],
     reviews:[],
+    daily:[],
     isLogin: false,
     user: '',
     resetId: '',
@@ -33,7 +34,10 @@ export default new Vuex.Store({
     }, 
     GET_FILTER(state, payload){
       state.videos = payload
-    }, 
+    },
+    DAILY_REGIST(state, payload){
+      state.daily = payload
+    },
     USER_LOGIN(state, payload){
       state.isLogin = true
       state.user = payload
@@ -119,6 +123,23 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    dailyRegist({commit}, daily){
+
+      console.log(daily)
+      router.push({name: 'dailyView'})
+      commit
+      // axios({
+      //   method:'GET',
+      //   params: daily
+      // }).then(res=>{
+      //   console.log(res)
+      //   commit('DAILY_REGIST')
+      //   router.push({name: 'dailyView'})
+      // }).catch((err)=>{
+      //   console.log(err)
+      // })
+      
+    },
     userLogout({commit}) {
       const API_URL = `${connect}/user/logout`
       axios({
@@ -166,6 +187,7 @@ export default new Vuex.Store({
       })
     },
     writeReview({commit}, new_review) {
+      console.log(new_review)
       const API_URL = `${connect}/video/`
       axios({
         url: API_URL,
