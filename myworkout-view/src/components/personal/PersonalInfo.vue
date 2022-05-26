@@ -1,6 +1,6 @@
 <template>
   <div class="container" style="width: 600px;"><br><br>
-    <h3>회원 정보 확인</h3>
+    <h3>회원 정보 수정</h3>
     <div class="m-4">
       <b-form-group label="아이디" label-for="id">
         <b-form-input id="id" :value="u.userId" trim disabled></b-form-input>
@@ -9,10 +9,10 @@
         <b-form-input id="nickname" :value="u.nickname" trim disabled></b-form-input>
       </b-form-group>
       <b-form-group label="키" label-for="height">
-        <b-form-input id="height" :value="u.height"  trim type="number" disabled></b-form-input>
+        <b-form-input id="height" :value="u.height"  trim type="number"></b-form-input>
       </b-form-group>
       <b-form-group label="몸무게" label-for="weight">
-        <b-form-input id="weight" :value="u.weight" trim type="number" disabled></b-form-input>
+        <b-form-input id="weight" :value="u.weight" trim type="number"></b-form-input>
       </b-form-group>
       <div>
         <b-form-group label="성별" disabled>
@@ -21,7 +21,7 @@
         </b-form-group>
       </div>
       <div>
-        <b-form-group label="캐릭터" disabled>
+        <b-form-group label="캐릭터">
           <b-form-radio-group
             v-model="u.photo"
             :options="options"

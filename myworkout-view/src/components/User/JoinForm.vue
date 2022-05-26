@@ -2,7 +2,6 @@
   <div class="container" style="width: 600px;"><br><br>
     <h3>회원가입</h3>
     <div class="m-4">
-    <b-form @submit.stop.prevent="onSubmit">
       <b-form-group label="아이디" label-for="id">
         <b-form-input id="id" v-model="user.userId" trim required></b-form-input>
       </b-form-group>
@@ -52,7 +51,6 @@
       </b-form-group>
       <b-button type="submit" variant="outline-success" @click="join">회원가입</b-button>
       <br><br><br>
-    </b-form>
     </div>
   </div>
 </template>

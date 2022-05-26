@@ -25,5 +25,8 @@ public interface UserService {
 	
 	// 비밀번호 찾기 (아이디와 보물 1호 체크)
 	boolean findPW(String userId, String treasure) throws Exception;
+
+	// 별명 이름 가져오기
+	String getNicknamebyId(String followerId);
 	
 }

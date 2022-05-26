@@ -156,6 +156,15 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(result, status);
 	}
 
+	@PostMapping("/follower")
+	public ResponseEntity<Map<String, Object>> getNickname(@RequestParam String followerId){
+		HashMap<String, Object> result = new HashMap<>();
+		String nickname = UserService.getNicknamebyId(followerId);
+		result.put("nickname", nickname);
+		HttpStatus status = HttpStatus.ACCEPTED;
+		return new ResponseEntity<Map<String, Object>>(result, status);
+	}
+	
 	@PostMapping("/follow")
 	public ResponseEntity<String> insertFollow(@RequestParam String targetId, @RequestParam String followerId){
 		Friend friend = new Friend(0, targetId, followerId);

@@ -10,10 +10,10 @@ public interface DiaryDao {
 	
 	// 일기 디테일 조회하기
 	Diary detailDiary(String userId, String date);
-	
+
 	// 이전 일기 조회하기
 	Diary oldDiary(String userId, String date);
-
+	
 	// 일기 등록하기
 	void InsertDiary(Diary diary);
 

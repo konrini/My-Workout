@@ -24,7 +24,7 @@
         class="py-3 px-5 mx-5"
       ></b-calendar>
 
-      <b-row class="justify-content-md-end">
+      <b-row class="justify-content-md-center">
         <b-button variant="light" class="mr-5" @click="readview">운동 일지 보기</b-button>
         <b-button variant="light" class="mr-5" @click="check">오늘의 운동 완료</b-button>
       </b-row>

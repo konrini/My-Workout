@@ -1,7 +1,6 @@
 package com.myworkout.board.controller;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myworkout.board.model.dto.Diary;
-import com.myworkout.board.model.dto.Friend;
 import com.myworkout.board.model.service.DiaryService;
 
 @RestController
@@ -33,14 +31,12 @@ public class DailyController {
 	public ResponseEntity<List<Diary>> diarylist(@RequestParam String userId) {
 		return new ResponseEntity<List<Diary>>(diaryservice.getDiaryList(userId), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/old")
 	public ResponseEntity<Map<String, Object>> getolddiary(@RequestParam String userId, @RequestParam String date) {
 		Diary diary = diaryservice.getoldDiary(userId, date);
 		HashMap<String, Object> result = new HashMap<>();
-		
 		result.put("diary", diary);
-		
 		HttpStatus status = HttpStatus.ACCEPTED;
 		return new ResponseEntity<Map<String, Object>>(result, status);
 	}

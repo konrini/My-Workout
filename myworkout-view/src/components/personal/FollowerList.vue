@@ -1,13 +1,12 @@
 <template>
   <div><br><br>
       <b-card-group deck>
-        <b-card style="text-align:center" no-body :header="'followings'+' ('+followings.length+')'">
+        <b-card style="text-align:center;" no-body :header="'followings'+' ('+followings.length+')'">
           <b-list-group flush>
             <b-list-group-item v-for="fg in followings" :key="fg" @click="unfollow(fg)">{{fg}} <b-icon icon="x-lg"></b-icon></b-list-group-item>
           </b-list-group>
         </b-card>
-
-        <b-card style="text-align:center" no-body :header="'followers'+' ('+followers.length+')'">
+        <b-card style="text-align:center;" no-body :header="'followers'+' ('+followers.length+')'">
           <b-list-group flush>
             <b-list-group-item v-for="fr in followers" :key="fr">{{fr}} </b-list-group-item>
           </b-list-group>
@@ -46,5 +45,10 @@ export default {
 </script>
 
 <style>
-
+.card-deck .card {
+  max-width: calc(25% - 30px);
+}
+.card-deck {
+  justify-content: center;
+}
 </style>

@@ -388,8 +388,13 @@ export default new Vuex.Store({
         params: info,
       }).then(res=>{
         console.log(res)
-        router.push({name: 'DiaryView'})
-        commit('READ_VIEW', res.data.diary)
+        if (res.data.diary == null) {
+          alert('운동 일지가 없습니다.')
+        }
+        else {
+          router.push({name: 'DiaryView'})
+          commit('READ_VIEW', res.data.diary)
+        }
       }).catch((err)=>{
         console.log(err)
       })

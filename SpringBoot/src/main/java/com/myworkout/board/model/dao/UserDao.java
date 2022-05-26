@@ -19,4 +19,7 @@ public interface UserDao{
 	
 	// 회원 검색
 	User selectOneUser(String userId) throws Exception;
+
+	// 별명 이름 가져오기
+	String getNickname(String followerId);
 }

@@ -43,4 +43,12 @@
 		photo = #{photo}
 		WHERE user_id = #{userId}		
 	</update>
+
+	<select id="getNickname" resultMap="userMap" parameterType="String">
+		SELECT DISTINCT(nickname)
+		FROM user
+		INNER JOIN friend
+		ON user.user_id = #{userId};
+	</select>
+		
 </mapper>

@@ -8,7 +8,7 @@
       </b-row><br>
       <b-nav tabs align="center"> 
         <b-nav-item to="/MyPage/info" :active="$route.name == 'personalInfocheck'" >내 정보</b-nav-item>
-        <b-nav-item to="/MyPage/follower" :active="$route.name == 'followerList'">팔로우하는 사람들</b-nav-item>
+        <b-nav-item to="/MyPage/follower" :active="$route.name == 'followerList'">Follow</b-nav-item>
       </b-nav>
     <router-view></router-view>
   </div>
