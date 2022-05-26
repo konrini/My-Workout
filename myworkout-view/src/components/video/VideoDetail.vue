@@ -3,9 +3,11 @@
     <br><br><br>
     <hr>
 <!-- 비디오 영역 -->
+<b-row class="justify-content-md-center">
     <div class="card m-3 p-2" style="background: red; width: 820px; height: 470px;">
       <iframe style="width: 800px; height: 450px" :src="'https://www.youtube.com/embed/'+ videos[id-1].url" frameborder="0"></iframe>
     </div>
+</b-row> 
 <!-- 비디오 영역 끝 -->
 <!-- 댓글 영역 -->
       <div class="container">
