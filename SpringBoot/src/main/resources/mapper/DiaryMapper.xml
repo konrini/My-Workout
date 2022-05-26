@@ -25,6 +25,12 @@
 		WHERE date = CURRENT_DATE() and user_id = #{userId}
 	</select>
 	
+	<select id="oldDiary" resultMap="diaryMap" parameterType="String">
+		SELECT *
+		FROM daily_workout
+		WHERE date = #{date} and user_id = #{userId}
+	</select>
+	
 	<insert id="InsertDiary" parameterType="Diary">
 		INSERT INTO daily_workout 
 		VALUES (0, #{category}, #{diary}, now(), #{changedWeight}, #{changedHeight}, #{userId})

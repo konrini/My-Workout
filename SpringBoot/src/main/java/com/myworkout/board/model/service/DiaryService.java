@@ -10,6 +10,9 @@ public interface DiaryService {
 	
 	// 일기 디테일 조회
 	Diary getDiary(String userId, String date);
+	
+	// 예전 일기 조회
+	Diary getoldDiary(String userId, String date);
 
 	// 일기 등록
 	void writeDiary(Diary diary);

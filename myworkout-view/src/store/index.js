@@ -25,7 +25,8 @@ export default new Vuex.Store({
     searchVideos:[],
     diary: '',
     followings: [],
-    followers: []
+    followers: [],
+    olddiary:''
   },
   getters: {
   },
@@ -78,6 +79,9 @@ export default new Vuex.Store({
     DELETE_FOLLOWINGS(state, payload){
       var idx = state.followings.indexOf(payload)
       state.followings.splice(idx, 1)
+    },
+    READ_VIEW(state, payload){
+      state.olddiary = payload
     }
   },
   actions: {
@@ -372,6 +376,20 @@ export default new Vuex.Store({
       }).then(res =>{
         console.log(res)
         commit('INSERT_FOLLOWINGS', info.followerId)
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    readView({commit}, info){
+      const API_URL = `${connect}/dailyView/old`
+      axios({
+        url: API_URL,
+        method: 'GET',
+        params: info,
+      }).then(res=>{
+        console.log(res)
+        router.push({name: 'DiaryView'})
+        commit('READ_VIEW', res.data.diary)
       }).catch((err)=>{
         console.log(err)
       })
