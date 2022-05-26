@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `My_Workout`.`review` (
   `time` TIMESTAMP NOT NULL DEFAULT now(),
   `changed` INT NOT NULL DEFAULT 0,
   `user_photo` INT NOT NULL,
-  `user_id` VARCHAR(8) NOT NULL,
+  `user_id` VARCHAR(20) NOT NULL,
   `user_nickname` VARCHAR(20) NOT NULL,
   `video_id` INT NOT NULL,
   PRIMARY KEY (`review_id`),
