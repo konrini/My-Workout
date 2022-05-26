@@ -42,7 +42,7 @@ public class VideoServiceImpl implements VideoService{
 
 	@Override
 	public void writeReview(VideoReview videoreview) {
-		videodao.InsertVideoReview(videoreview);		
+		videodao.InsertVideoReview(videoreview);
 	}
 
 	@Override
@@ -58,5 +58,14 @@ public class VideoServiceImpl implements VideoService{
 		return videodao.DeleteVideoReview(reviewId) == 1;
 	}
 
+	@Override
+	public void addReviewCnt(int videoId) {
+		videodao.plusReviewCnt(videoId);
+	}
+
+	@Override
+	public void substractReviewCnt(int videoId) {
+		videodao.minusReviewCnt(videoId);
+	}
 
 }

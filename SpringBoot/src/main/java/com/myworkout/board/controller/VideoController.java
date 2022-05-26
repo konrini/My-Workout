@@ -48,6 +48,7 @@ public class VideoController {
 			@RequestParam String userId, @RequestParam String userNickname, @RequestParam int videoId){
 		VideoReview videoreview = new VideoReview(0, content, "", 0, userPhoto, userId, userNickname, videoId);
 		VideoService.writeReview(videoreview);
+		VideoService.addReviewCnt(videoId);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
 	}
 	
@@ -60,8 +61,9 @@ public class VideoController {
 	}
 	
 	@DeleteMapping("/{reviewId}")
-	public ResponseEntity<String> delete(@PathVariable int reviewId){
+	public ResponseEntity<String> delete(@PathVariable int reviewId, @RequestParam int videoId){
 		if(VideoService.removeReview(reviewId)) {
+			VideoService.substractReviewCnt(videoId);
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);

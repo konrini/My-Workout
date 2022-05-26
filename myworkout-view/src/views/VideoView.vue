@@ -81,7 +81,7 @@ export default {
         changeClass7(){
           this.turn7 = !this.turn7
         }
-  }
+        },
 }
 </script>
 <style>

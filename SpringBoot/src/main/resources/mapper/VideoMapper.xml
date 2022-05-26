@@ -68,4 +68,17 @@
 		DELETE FROM review WHERE review_id = #{reviewId}
 	</delete>
 
+	<update id="plusReviewCnt" parameterType="int">
+		UPDATE video
+		SET
+		review_count = review_count + 1
+		WHERE video_id = #{videoId}
+	</update>
+	
+	<update id="minusReviewCnt" parameterType="int">
+		UPDATE video
+		SET
+		review_count = review_count - 1
+		WHERE video_id = #{videoId}
+	</update>
 </mapper>

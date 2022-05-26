@@ -5,7 +5,7 @@
 <!-- 비디오 영역 -->
 <b-row class="justify-content-md-center">
     <div class="card m-3 p-2" style="background: red; width: 820px; height: 470px;">
-      <iframe style="width: 800px; height: 450px" :src="'https://www.youtube.com/embed/'+ videos[id-1].url" frameborder="0"></iframe>
+      <iframe style="width: 800px; height: 450px" :src="'https://www.youtube.com/embed/'+ this.videos[id-1].url" frameborder="0"></iframe>
     </div>
 </b-row> 
 <!-- 비디오 영역 끝 -->
@@ -14,7 +14,7 @@
         <div v-if="this.isLogin == true">
           <b-form inline>
             <img :src='"@/assets/photo/"+user.photo+".png"'/>
-            <b-form-input class="mr-2" v-model="new_review.content" placeholder="댓글을 등록하세요."/>
+            <b-form-input @keydown.13="create" class="mr-2" v-model="new_review.content" placeholder="댓글을 등록하세요."/>
             <b-button variant="success" @click="create">등록</b-button>
           </b-form>
         </div>
@@ -33,7 +33,7 @@
             <td>{{review.content}}</td>
             <td>{{review.time}}</td>
             <td><b-button v-if="review.userId == user.userId" variant="success" style="color: black" @click="update(review.reviewId)">수정</b-button></td>
-            <td><b-button v-if="review.userId == user.userId" variant="warning" @click="doDel(review.reviewId)">삭제</b-button></td>
+            <td><b-button v-if="review.userId == user.userId" variant="warning" @click="doDel(review.reviewId, review.videoId)">삭제</b-button></td>
           </tr>
         </table>
       </div>
@@ -59,6 +59,10 @@ export default {
         reviewId: "",
       },
       reviewId: "",
+      del_info: {
+        reviewId: "",
+        videoId: ""
+      }
     }
   },
   computed: {
@@ -84,8 +88,10 @@ export default {
       this.new_review.content = ""
       this.$router.go();
     },
-    doDel(reviewId) {
-      this.$store.dispatch('deleteReview', reviewId)
+    doDel(reviewId, videoId) {
+      this.del_info.reviewId = reviewId
+      this.del_info.videoId = videoId
+      this.$store.dispatch('deleteReview', this.del_info)
       this.$router.go();
     },
     update(reviewId) {

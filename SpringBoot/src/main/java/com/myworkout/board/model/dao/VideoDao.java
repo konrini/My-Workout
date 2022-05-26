@@ -29,4 +29,10 @@ public interface VideoDao {
 
 	// 영상 댓글 삭제하기
 	int DeleteVideoReview(int reviewId);
+	
+	// 영상 댓글 수 증가
+	void plusReviewCnt(int videoId);
+	
+	// 영상 댓글 수 감소
+	void minusReviewCnt(int videoId);
 }

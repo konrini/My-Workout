@@ -16,7 +16,7 @@
 	<select id="selectAllDiaries" resultMap="diaryMap" parameterType="String">
 		SELECT *
 		FROM daily_workout
-		WHERE 
+		WHERE user_id = #{userId}
 	</select>
 	
 	<select id="detailDiary" resultMap="diaryMap" parameterType="String">

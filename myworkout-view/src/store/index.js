@@ -196,11 +196,12 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    deleteReview({commit}, reviewId) {
-      const API_URL = `${connect}/video/` + reviewId
+    deleteReview({commit}, info) {
+      const API_URL = `${connect}/video/` + info.reviewId
       axios({
         url: API_URL,
         method: 'DELETE',
+        params: info
       }).then(res =>{
         console.log(res)
         commit('DELETE_REVIEW')
@@ -289,7 +290,7 @@ export default new Vuex.Store({
       }).catch((err)=>{
         console.log(err)
       })
-    }
+    },
 
   },
 

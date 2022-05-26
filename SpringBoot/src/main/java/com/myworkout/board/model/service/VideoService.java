@@ -30,4 +30,10 @@ public interface VideoService {
 	// 댓글 삭제
 	boolean removeReview(int reviewId);
 	
+	// 댓글 수 증가
+	void addReviewCnt(int videoId);
+
+	// 댓글 수 감소
+	void substractReviewCnt(int videoId);
+	
 }
