@@ -28,8 +28,16 @@
             <th/>
           </tr>
           <tr v-for="review in reviews" :key="review.reviewId">
-            <td><img :src='"@/assets/photo/"+review.userPhoto+".png"'/></td>
-            <td>{{review.userNickname}}</td>
+            <td>
+              <img v-if="(review.userNickname != user.nickname) & followings.includes(review.userId)" @click="unfollow(review.userNickname, review.userId)" :src='"@/assets/photo/"+review.userPhoto+".png"'/>
+              <img v-else-if="review.userNickname != user.nickname" @click="follow(review.userNickname, review.userId)" :src='"@/assets/photo/"+review.userPhoto+".png"'/>
+              <img v-else :src='"@/assets/photo/"+review.userPhoto+".png"'/>
+            </td>
+            <td>
+              <span v-if="(review.userNickname != user.nickname) & followings.includes(review.userId)" @click="unfollow(review.userNickname, review.userId)">{{review.userNickname}}</span>
+              <span v-else-if="review.userNickname != user.nickname" @click="follow(review.userNickname, review.userId)">{{review.userNickname}}</span>
+              <span v-else>{{review.userNickname}}</span>
+            </td>
             <td>{{review.content}}</td>
             <td>{{review.time}}</td>
             <td><b-button v-if="review.userId == user.userId" variant="success" style="color: black" @click="update(review.reviewId)">수정</b-button></td>
@@ -62,6 +70,10 @@ export default {
       del_info: {
         reviewId: "",
         videoId: ""
+      },
+      following: {
+        targetId: "",
+        followerId: ""
       }
     }
   },
@@ -70,7 +82,8 @@ export default {
       "reviews",
       "videos",
       "isLogin",
-      "user"
+      "user",
+      "followings"
     ]),
   },
   created(){
@@ -78,6 +91,7 @@ export default {
     const id = pathName[pathName.length-1]
     this.id = id
     this.new_review.videoId = id
+    this.following.targetId = this.user.userId
     this.$store.dispatch('getReviews', id)
     this.$store.dispatch('getVideos')
   },
@@ -99,6 +113,30 @@ export default {
       this.$store.dispatch('modifyReview', this.new_review)
       this.new_review.content = ""
       this.$router.go();
+    },
+    follow(userNickname, userId) {
+      this.$bvModal.msgBoxConfirm(userNickname + '님을 팔로우 하시겠습니까?')
+        .then(value => {
+          if (value == true) {
+            this.following.followerId = userId
+            this.$store.dispatch('insertFollowing', this.following)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    unfollow(userNickname, userId) {
+      this.$bvModal.msgBoxConfirm(userNickname + '님을 팔로우 취소하시겠습니까?')
+        .then(value => {
+          if (value == true) {
+            this.following.followerId = userId
+            this.$store.dispatch('deleteFollowing', this.following)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
   }
 }

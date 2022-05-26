@@ -11,7 +11,7 @@ const connect = `http://localhost:9999`
 export default new Vuex.Store({
   plugins: [
     creatPersistedState({
-      paths: ['isLogin', 'resetId', 'user', 'diary','daily'],
+      paths: ['isLogin', 'resetId', 'user', 'diary','daily', 'followings', 'followers'],
     })
   ],
   state: {
@@ -23,7 +23,9 @@ export default new Vuex.Store({
     user: '',
     resetId: '',
     searchVideos:[],
-    diary: ''
+    diary: '',
+    followings: [],
+    followers: []
   },
   getters: {
   },
@@ -49,6 +51,8 @@ export default new Vuex.Store({
       state.user = ''
       state.diary = ''
       state.daily = ''
+      state.followers = ''
+      state.followings = ''
     },
     PW_RESET(state, payload){
       state.resetId = payload
@@ -61,6 +65,19 @@ export default new Vuex.Store({
     },
     GET_DIARIES(state, payload){
       state.daily = payload
+    },
+    GET_FOLLOWINGS(state, payload){
+      state.followings = payload
+    },
+    GET_FOLLOWERS(state, payload){
+      state.followers = payload
+    },
+    INSERT_FOLLOWINGS(state, payload){
+      state.followings.push(payload)
+    },
+    DELETE_FOLLOWINGS(state, payload){
+      var idx = state.followings.indexOf(payload)
+      state.followings.splice(idx, 1)
     }
   },
   actions: {
@@ -291,6 +308,74 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    pwCheck({commit}, user) {
+      const API_URL = `${connect}/user/pw`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params: user
+      }).then(res =>{
+        if (res["data"] === "success") {
+          router.push({name: 'personalInfo'})
+          commit()
+        }
+        else {
+          alert("비밀번호가 일치하지 않습니다.")
+        }
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    getFollowing({commit}, info) {
+      const API_URL = `${connect}/user/following`
+      axios({
+        url: API_URL,
+        method: 'GET',
+        params: info
+      }).then(res =>{
+        commit('GET_FOLLOWINGS', res.data.followings)
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    getFollower({commit}, info) {
+      const API_URL = `${connect}/user/follower`
+      axios({
+        url: API_URL,
+        method: 'GET',
+        params: info
+      }).then(res =>{
+        commit('GET_FOLLOWERS', res.data.followers)
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    deleteFollowing({commit}, info) {
+      const API_URL = `${connect}/user/follow`
+      axios({
+        url: API_URL,
+        method: 'DELETE',
+        params: info
+      }).then(res =>{
+        console.log(res)
+        commit('DELETE_FOLLOWINGS', info.followerId)
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    insertFollowing({commit}, info) {
+      const API_URL = `${connect}/user/follow`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params: info
+      }).then(res =>{
+        console.log(res)
+        commit('INSERT_FOLLOWINGS', info.followerId)
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }
 
   },
 

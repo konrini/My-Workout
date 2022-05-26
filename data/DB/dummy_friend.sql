@@ -13,4 +13,8 @@ VALUES (0, "migon", "soomi"),
 SELECT *
 FROM friend;
 
+SELECT follower_id
+FROM friend
+WHERE target_id = "gyun";
+
 -- SET sql_safe_updates = 1;

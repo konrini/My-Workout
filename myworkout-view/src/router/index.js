@@ -13,6 +13,7 @@ import PwFind from '@/components/User/PwFind.vue'
 import PwReset from '@/components/User/PwReset.vue'
 import MyPage from '@/views/MyPage.vue'
 import PersonalInfo from '@/components/personal/PersonalInfo.vue'
+import PersonalInfocheck from '@/components/personal/PersonalInfocheck.vue'
 import FollowerList from '@/components/personal/FollowerList.vue'
 
 Vue.use(VueRouter)
@@ -75,10 +76,15 @@ const routes = [
     component: DiaryView,
   },
   {
-    path:"/myPage",
+    path:"/MyPage",
     name:"MyPage",
     component: MyPage,
     children:[
+      {
+        path:"info",
+        name:"personalInfocheck",
+        component: PersonalInfocheck,
+      },
       {
         path:"info",
         name:"personalInfo",

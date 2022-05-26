@@ -10,7 +10,7 @@
             </b-col>
             <b-col md="6"></b-col>
             <b-col md="2">
-                <router-link v-if="this.isLogin == true" to="/MyPage/info"><img :src='"@/assets/photo/"+user.photo+".png"'/></router-link>
+                <router-link v-if="this.isLogin == true" :to="{name: 'personalInfocheck'}"><img :src='"@/assets/photo/"+user.photo+".png"'/></router-link>
                 <!-- <b-dropdown text="" variant="light" class="m-2">
                     <b-dropdown-item href="#">Action</b-dropdown-item>
                     <b-dropdown-item href="#">Another action</b-dropdown-item>
@@ -22,7 +22,6 @@
 </template>
 
 <script>
-
 import {mapState} from 'vuex'
 
 export default {

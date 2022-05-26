@@ -36,6 +36,8 @@ export default {
   methods: {
     login() {
       this.$store.dispatch('userLogin', this.user)
+      this.$store.dispatch('getFollowing', this.user)
+      this.$store.dispatch('getFollower', this.user)
       this.user.userId = ''
       this.user.password = ''
     }

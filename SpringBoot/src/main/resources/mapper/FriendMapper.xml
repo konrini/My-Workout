@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myworkout.board.model.dao.FriendDao">
+	<resultMap type="Friend" id="friendMap">
+		<id column="friend_id" property="friendId" />
+		<result column="target_id" property="targetId" />
+		<result column="follower_id" property="followerId" />
+	</resultMap>
+	
+	<insert id="insertFollowing" parameterType="Friend">
+		INSERT INTO friend
+		VALUES (#{friendId}, #{targetId}, #{followerId})
+	</insert>
+
+	<select id="selectMyFollowings" resultMap="friendMap" parameterType="String">
+		SELECT follower_id
+		FROM friend
+		WHERE target_id = #{targetId}
+	</select>
+	
+	<select id="selectMyFollowers" resultMap="friendMap" parameterType="String">
+		SELECT target_id
+		FROM friend
+		WHERE follower_id = #{targetId}
+	</select>
+
+	<delete id="DeleteFollowing" parameterType="String">
+		DELETE FROM friend WHERE target_id = #{targetId} and follower_id = #{followerId}
+	</delete>
+</mapper>
