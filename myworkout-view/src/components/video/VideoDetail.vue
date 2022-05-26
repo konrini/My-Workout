@@ -7,7 +7,7 @@
     <div class="card m-3 p-2" style="background: red; width: 820px; height: 470px;">
       <iframe style="width: 800px; height: 450px" :src="'https://www.youtube.com/embed/'+ this.videos[id-1].url" frameborder="0"></iframe>
     </div>
-</b-row> 
+</b-row> <br>
 <!-- 비디오 영역 끝 -->
 <!-- 댓글 영역 -->
       <div class="container">

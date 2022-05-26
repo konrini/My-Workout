@@ -25,6 +25,7 @@
       ></b-calendar>
 
       <b-row class="justify-content-md-end">
+        <b-button variant="light" class="mr-5" @click="readview">운동 일지 보기</b-button>
         <b-button variant="light" class="mr-5" @click="check">오늘의 운동 완료</b-button>
       </b-row>
   </div>
@@ -83,7 +84,10 @@ export default {
     check() {
       this.info.userId = this.user.userId
       this.$store.dispatch('getDiary', this.info)
-    }
+    },
+    readview(){
+      this.$store.dispatch('readView', this.value)
+      },
   },
   created() {
       this.$store.dispatch('getDiaries', this.user)
