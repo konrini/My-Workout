@@ -41,7 +41,7 @@ const routes = [
   },
   {
     path: '/dailyView',
-    name: 'dailyView',
+    name: 'DailyView',
     component: DailyView,
   },
   {

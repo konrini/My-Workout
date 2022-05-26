@@ -1,16 +1,14 @@
 <template>
   <div>
-    <h2>Video Detail</h2>
     <br><br><br>
     <hr>
-      <div class="d-flex flex-row justify-content-around">
 <!-- 비디오 영역 -->
-      <div>
-      <iframe :src="'https://www.youtube.com/embed/'+ videos[id-1].url"/>
-      </div>
+    <div class="card m-3 p-2" style="background: red; width: 820px; height: 470px;">
+      <iframe style="width: 800px; height: 450px" :src="'https://www.youtube.com/embed/'+ videos[id-1].url" frameborder="0"></iframe>
+    </div>
 <!-- 비디오 영역 끝 -->
 <!-- 댓글 영역 -->
-      <div>
+      <div class="container">
         <div v-if="this.isLogin == true">
           <b-form inline>
             <img :src='"@/assets/photo/"+user.photo+".png"'/>
@@ -38,7 +36,6 @@
         </table>
       </div>
 <!-- 댓글 영역 끝 -->
-      </div>
   </div>
 </template>
 

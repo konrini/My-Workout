@@ -73,6 +73,9 @@ export default {
             else if (this.daily[i].category == "bsb") {
               return 'table-info'
             }
+            else if (this.daily[i].category == "etc") {
+              return 'table-dark'
+            }
             }
             }
       }

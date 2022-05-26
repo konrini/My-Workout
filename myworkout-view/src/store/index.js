@@ -252,7 +252,7 @@ export default new Vuex.Store({
         params: diary
       }).then(res =>{
         console.log(res)
-        router.push({name: 'dailyView'})
+        router.push({name: 'DailyView'})
         commit()
       }).catch((err)=>{
         console.log(err)
