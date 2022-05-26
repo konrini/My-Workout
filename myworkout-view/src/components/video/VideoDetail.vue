@@ -11,37 +11,36 @@
 <!-- 비디오 영역 끝 -->
 <!-- 댓글 영역 -->
       <div class="container">
-        <div v-if="this.isLogin == true">
+        <div class="ml-5" v-if="this.isLogin == true">
           <b-form inline>
             <img :src='"@/assets/photo/"+user.photo+".png"'/>
             <b-form-input @keydown.13="create" class="mr-2" v-model="new_review.content" placeholder="댓글을 등록하세요."/>
             <b-button variant="success" @click="create">등록</b-button>
           </b-form>
-        </div>
+        </div><br>
         <table class="table">
           <tr>
-            <th/>
-            <th>별명</th>
-            <th>댓글</th>
-            <th>작성 시간</th>
-            <th/>
-            <th/>
+            <th class="th-1" />
+            <th class="th-2">별명</th>
+            <th class="th-3" style="text-align: center;">댓글</th>
+            <th class="th-4">작성 시간</th>
+            <th class="th-5"/>
           </tr>
           <tr v-for="review in reviews" :key="review.reviewId">
-            <td>
+            <td class="th-1">
               <img v-if="(review.userNickname != user.nickname) & followings.includes(review.userId)" @click="unfollow(review.userNickname, review.userId)" :src='"@/assets/photo/"+review.userPhoto+".png"'/>
               <img v-else-if="review.userNickname != user.nickname" @click="follow(review.userNickname, review.userId)" :src='"@/assets/photo/"+review.userPhoto+".png"'/>
               <img v-else :src='"@/assets/photo/"+review.userPhoto+".png"'/>
             </td>
-            <td>
+            <td class="th-2">
               <span v-if="(review.userNickname != user.nickname) & followings.includes(review.userId)" @click="unfollow(review.userNickname, review.userId)">{{review.userNickname}}</span>
               <span v-else-if="review.userNickname != user.nickname" @click="follow(review.userNickname, review.userId)">{{review.userNickname}}</span>
               <span v-else>{{review.userNickname}}</span>
             </td>
-            <td>{{review.content}}</td>
-            <td>{{review.time}}</td>
-            <td><b-button v-if="review.userId == user.userId" variant="success" style="color: black" @click="update(review.reviewId)">수정</b-button></td>
-            <td><b-button v-if="review.userId == user.userId" variant="warning" @click="doDel(review.reviewId, review.videoId)">삭제</b-button></td>
+            <td class="th-3">{{review.content}}</td>
+            <td class="th-4">{{review.time}}</td>
+            <td class="th-5"><b-button v-if="review.userId == user.userId" class="mr-1" variant="success" style="color: black" @click="update(review.reviewId)">수정</b-button>
+                             <b-button v-if="review.userId == user.userId" variant="warning" @click="doDel(review.reviewId, review.videoId)">삭제</b-button></td>
           </tr>
         </table>
       </div>
@@ -142,5 +141,23 @@ export default {
 }
 </script>
 <style>
-
+.th-1{
+  text-align: center;
+  width: 20px
+}
+.th-2{
+  text-align: center;
+  width: 90px
+}
+.th-3{
+  width: 400px
+}
+.th-4{
+  text-align: center;
+  width: 150px
+}
+.th-5{
+  text-align: center;
+  width: 120px
+}
 </style>

@@ -18,7 +18,7 @@
       </b-row><br>
 
       <b-calendar
-        v-model="value"
+        v-model="info.date"
         :date-info-fn="dateClass"
         block locale="ko"
         class="py-3 px-5 mx-5"
@@ -36,9 +36,9 @@ import {mapState} from 'vuex'
 export default {
   data(){
     return{
-      value: "",
       info: {
         userId: "",
+        date: "",
       }
     }
   },
@@ -86,8 +86,9 @@ export default {
       this.$store.dispatch('getDiary', this.info)
     },
     readview(){
-      this.$store.dispatch('readView', this.value)
-      },
+      this.info.userId = this.user.userId
+      this.$store.dispatch('readView', this.info)
+    },
   },
   created() {
       this.$store.dispatch('getDiaries', this.user)

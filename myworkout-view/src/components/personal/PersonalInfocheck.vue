@@ -3,7 +3,7 @@
     <h3>회원 정보 수정</h3>
     <div class="m-4">
       <b-form-group label="비밀번호를 입력하세요." label-for="pw">
-        <b-form-input id="pw" v-model="user_check.password" trim type="password" required></b-form-input>
+        <b-form-input @keydown.13="check" id="pw" v-model="user_check.password" trim type="password" required></b-form-input>
       </b-form-group>
       <b-button type="submit" variant="outline-success" @click="check">확인</b-button>
       <br><br><br>

@@ -23,6 +23,11 @@ public class DiaryServiceImpl implements DiaryService {
 	public Diary getDiary(String userId, String date) {
 		return diarydao.detailDiary(userId, date);
 	}
+	
+	@Override
+	public Diary getoldDiary(String userId, String date) {
+		return diarydao.oldDiary(userId, date);
+	}
 
 	@Override
 	public void writeDiary(Diary diary) {
@@ -43,5 +48,6 @@ public class DiaryServiceImpl implements DiaryService {
 	public boolean removeDiary(String date) {
 		return diarydao.DeleteDiary(date) == 1;
 	}
+
 
 }
