@@ -78,6 +78,8 @@ export default {
     this.daily.changedHeight = this.user.height
     this.daily.changedWeight = this.user.weight
     if (this.diary != "") {
+      this.daily.changedHeight = this.diary.changedHeight
+      this.daily.changedWeight = this.diary.changedWeight
       this.daily.category = this.diary.category
       this.daily.diary = this.diary.diary
     }

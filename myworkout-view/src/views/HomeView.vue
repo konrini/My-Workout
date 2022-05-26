@@ -13,7 +13,7 @@
         <img src="../assets/homeimg/video.png">
       </router-link>
       
-      <router-link v-if="isLogin == true" class="animate__animated animate__fadeInRightBig mx-3" to="/dailyView">
+      <router-link  v-if="isLogin == true" class="animate__animated animate__fadeInRightBig mx-3" to="/dailyView">
         <img src="../assets/homeimg/calendar.png">
       </router-link>
       <div v-else>
@@ -53,7 +53,7 @@ import {mapState} from 'vuex'
 export default {
   data(){
     return {
-        dismissSecs: 5,
+        dismissSecs: 3,
         dismissCountDown: 0
     }
   },
@@ -71,6 +71,7 @@ export default {
   computed: {
       ...mapState([
       "isLogin",
+      "user"
       ])
   },
 }

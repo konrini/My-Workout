@@ -43,15 +43,37 @@ export default {
   computed: {
       ...mapState([
       "user",
+      "daily"
       ])
   },
   methods:{
     dateClass(ymd, date){
-      const day = date.getDate()
-      if(day==10){
-        return 'table-info'
-      }else if(day==11){
-        return 'table-danger'
+      const month = ymd.substr(5,2)
+      const day = ymd.substr(8,2)
+      date
+      for (let i = 0; i < this.daily.length; i++) {
+        if (month == this.daily[i].date.substr(5, 2)) {
+          if (day == this.daily[i].date.substr(8, 2)) {
+            if (this.daily[i].category == "swm") {
+              return 'table-primary'
+            }
+            else if (this.daily[i].category == "glf") {
+              return 'table-success'
+            }
+            else if (this.daily[i].category == "yog") {
+              return 'table-secondary'
+            }
+            else if (this.daily[i].category == "ftn") {
+              return 'table-danger'
+            }
+            else if (this.daily[i].category == "bmt") {
+              return 'table-warning'
+            }
+            else if (this.daily[i].category == "bsb") {
+              return 'table-info'
+            }
+            }
+            }
       }
     },
     check() {
@@ -59,6 +81,9 @@ export default {
       this.$store.dispatch('getDiary', this.info)
     }
   },
+  created() {
+      this.$store.dispatch('getDiaries', this.user)
+  }
 }
 </script>
 

@@ -27,14 +27,6 @@
       </b-button>
     </h5>
     </b-row>
-    <br>
-
-  <b-input-group>
-    <b-form-input v-model="keyword"></b-form-input>
-    <b-input-group-append>
-      <b-button @click="search" variant="outline-success">Search</b-button>
-    </b-input-group-append>
-  </b-input-group>
 
   <router-view/>
   </div>
@@ -52,8 +44,7 @@ export default {
         turn4: false,
         turn5: false,
         turn6: false,
-        turn7: false,
-        keyword: ""
+        turn7: false
       }
     },
     computed:{
@@ -89,9 +80,6 @@ export default {
         },
         changeClass7(){
           this.turn7 = !this.turn7
-        },
-        search(){
-            this.$store.dispatch("searchYoutube", this.keyword)
         }
   }
 }

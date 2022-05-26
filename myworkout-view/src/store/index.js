@@ -11,14 +11,14 @@ const connect = `http://localhost:9999`
 export default new Vuex.Store({
   plugins: [
     creatPersistedState({
-      paths: ['isLogin', 'resetId', 'user', 'diary'],
+      paths: ['isLogin', 'resetId', 'user', 'diary', 'daily'],
     })
   ],
   state: {
     // vuex data storage
     videos:[],
     reviews:[],
-    daily:[],
+    daily: '',
     isLogin: false,
     user: '',
     resetId: '',
@@ -57,6 +57,9 @@ export default new Vuex.Store({
     },
     GET_DIARY(state, payload){
       state.diary = payload
+    },
+    GET_DIARIES(state, payload){
+      state.daily = payload
     }
   },
   actions: {
@@ -227,7 +230,7 @@ export default new Vuex.Store({
         part: 'snippet',
         type: 'video',
         q: value,
-        maxResults: 1
+        maxResults: 3
       }
       axios({
         url: API_URL,
@@ -249,8 +252,8 @@ export default new Vuex.Store({
         params: diary
       }).then(res =>{
         console.log(res)
+        router.push({name: 'DailyView'})
         commit()
-        router.push({name: 'dailyView'})
       }).catch((err)=>{
         console.log(err)
       })
@@ -266,7 +269,22 @@ export default new Vuex.Store({
           commit('GET_DIARY', res.data.daily)
         }
         router.push({name: 'RegistWork'})
-        commit()
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
+    getDiaries({commit}, user) {
+      const API_URL = `${connect}/dailyView/`
+      axios({
+        url: API_URL,
+        method: 'GET',
+        params: user
+      }).then(res =>{
+        console.log(res.data)
+        if (res.data.length > 0) {
+          commit('GET_DIARIES', res.data)
+        }
+        router.push({name: 'DailyView'})
       }).catch((err)=>{
         console.log(err)
       })
