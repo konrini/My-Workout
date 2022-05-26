@@ -4,12 +4,16 @@ import HomeView from '@/views/HomeView.vue'
 import VideoView from '@/views/VideoView.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import DailyView from '@/views/DailyView.vue'
+import DiaryView from '@/components/daily/DiaryView.vue'
 import VideoList from '@/components/video/VideoList.vue'
 import VideoDetail from '@/components/video/VideoDetail.vue'
 import JoinForm from '@/components/User/JoinForm.vue'
 import RegistWork from '@/components/daily/RegistWork.vue'
 import PwFind from '@/components/User/PwFind.vue'
 import PwReset from '@/components/User/PwReset.vue'
+import MyPage from '@/views/MyPage.vue'
+import PersonalInfo from '@/components/personal/PersonalInfo.vue'
+import FollowerList from '@/components/personal/FollowerList.vue'
 
 Vue.use(VueRouter)
 
@@ -37,7 +41,7 @@ const routes = [
   },
   {
     path: '/dailyView',
-    name: 'DailyView',
+    name: 'dailyView',
     component: DailyView,
   },
   {
@@ -65,6 +69,28 @@ const routes = [
     name:"pwReset",
     component: PwReset,
   },
+  {
+    path:"/dailyView/view",
+    name:"DiaryView",
+    component: DiaryView,
+  },
+  {
+    path:"/myPage",
+    name:"MyPage",
+    component: MyPage,
+    children:[
+      {
+        path:"info",
+        name:"personalInfo",
+        component: PersonalInfo,
+      },
+      {
+        path:"follower",
+        name:"followerList",
+        component: FollowerList,
+      }
+    ]
+  }
   
 ]
 

@@ -7,7 +7,7 @@
         <b-form-input id="input-1" v-model="user.password" trim type="password"></b-form-input>
       </b-form-group>
       <b-form-group label="비밀번호 확인" label-for="input-2">
-        <b-form-input id="input-2" v-model="pw_confirm" trim type="password"></b-form-input>
+        <b-form-input @keydown.13="pwReset" id="input-2" v-model="pw_confirm" trim type="password"></b-form-input>
       </b-form-group>
       <b-button variant="success" @click="pwReset">확인</b-button>      
     </div>

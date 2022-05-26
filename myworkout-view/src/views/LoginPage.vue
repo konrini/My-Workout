@@ -7,7 +7,7 @@
         <b-form-input id="input-1" v-model="user.userId" trim></b-form-input>
       </b-form-group>
       <b-form-group label="비밀번호" label-for="input-2">
-        <b-form-input id="input-2" v-model="user.password" trim type="password"></b-form-input>
+        <b-form-input @keydown.13="login" id="input-2" v-model="user.password" trim type="password"></b-form-input>
       </b-form-group>
       <b-button @click="login" variant="outline-success" class="mb-2 mr-2">
         <b-icon icon="power" aria-hidden="true"></b-icon> Login

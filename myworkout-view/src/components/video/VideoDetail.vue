@@ -6,7 +6,6 @@
       <div class="d-flex flex-row justify-content-around">
 <!-- 비디오 영역 -->
       <div>
-      <h4>{{videos[id-1].category}}</h4>
       <iframe :src="'https://www.youtube.com/embed/'+ videos[id-1].url"/>
       </div>
 <!-- 비디오 영역 끝 -->

@@ -11,14 +11,14 @@ const connect = `http://localhost:9999`
 export default new Vuex.Store({
   plugins: [
     creatPersistedState({
-      paths: ['isLogin', 'resetId', 'user', 'diary', 'daily'],
+      paths: ['isLogin', 'resetId', 'user', 'diary','daily'],
     })
   ],
   state: {
     // vuex data storage
     videos:[],
     reviews:[],
-    daily: '',
+    daily:'',
     isLogin: false,
     user: '',
     resetId: '',
@@ -48,6 +48,7 @@ export default new Vuex.Store({
       state.isLogin = false
       state.user = ''
       state.diary = ''
+      state.daily = ''
     },
     PW_RESET(state, payload){
       state.resetId = payload
@@ -239,7 +240,6 @@ export default new Vuex.Store({
       })
       .then((res)=>{
         commit("SEARCH_YOUTUBE", res.data.items)
-        console.log(res.data.items)
       }).catch((err)=>{
         console.log(err)
       })
@@ -252,7 +252,7 @@ export default new Vuex.Store({
         params: diary
       }).then(res =>{
         console.log(res)
-        router.push({name: 'DailyView'})
+        router.push({name: 'dailyView'})
         commit()
       }).catch((err)=>{
         console.log(err)
@@ -269,6 +269,7 @@ export default new Vuex.Store({
           commit('GET_DIARY', res.data.daily)
         }
         router.push({name: 'RegistWork'})
+        commit()
       }).catch((err)=>{
         console.log(err)
       })

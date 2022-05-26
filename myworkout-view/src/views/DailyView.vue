@@ -13,6 +13,7 @@
           <b-button disabled variant="danger">피트니스</b-button>
           <b-button disabled variant="warning">배드민턴</b-button>
           <b-button disabled variant="info">야구</b-button>
+          <b-button disabled variant="dark">기타 운동</b-button>
         </h3>
       </b-row><br>
 
@@ -24,7 +25,7 @@
       ></b-calendar>
 
       <b-row class="justify-content-md-end">
-        <b-button class="mr-4" @click="check">오늘의 운동 완료</b-button>
+        <b-button variant="light" class="mr-5" @click="check">오늘의 운동 완료</b-button>
       </b-row>
   </div>
 </template>

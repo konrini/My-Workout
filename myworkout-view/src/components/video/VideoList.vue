@@ -1,14 +1,14 @@
 <template>
   <div>
     <br><br>
-    <h4>
+    <h4 style="text-align:center">
       영상 목록
     </h4>
     <hr>
     <b-container>
       <b-row>
         <b-col sm="4">
-          <b-form-input v-model="keyword" type="text" placeholder="검색어를 입력하세요." class="mx-2"></b-form-input>
+          <b-form-input @keydown.13="search" v-model="keyword" type="text" placeholder="검색어를 입력하세요." class="mx-2"></b-form-input>
         </b-col>
         <b-button @click="search" variant="outline-success">Search</b-button>
       </b-row>

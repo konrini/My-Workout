@@ -7,7 +7,7 @@
         <b-form-input id="input-1" v-model="info.userId" trim></b-form-input>
       </b-form-group>
       <b-form-group label="나의 보물 1호는?" label-for="input-2">
-        <b-form-input id="input-2" v-model="info.treasure" trim></b-form-input>
+        <b-form-input @keydown.13="pwFind" id="input-2" v-model="info.treasure" trim></b-form-input>
       </b-form-group>
       <b-button @click="pwFind" variant="outline-success" class="mb-2 mr-2">
         <b-icon icon="check2" aria-hidden="true"></b-icon>찾기
